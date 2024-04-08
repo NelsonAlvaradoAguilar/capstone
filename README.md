@@ -65,8 +65,9 @@ Post a new class.
 - Home Page
 - Registration Page
 - Login Page
-- Community Events Page
-- Community Articles Page
+  Profile page
+- Events Page
+- Articles and news Page
 - Classes Page
 - User Profile Page
 
@@ -75,9 +76,10 @@ Post a new class.
 - home page
 - registration page
 - logging page
-- my comunity(events,news) page
-- Community Articles Page
-- Art Classes Page
+  Profile page
+- my comunity(events) page
+  -Articles and news Page
+- Classes Page
 
 ### Data
 
@@ -182,7 +184,7 @@ Sprint 3 (Week 3)
 
 ### update button
 
-Frontend: Create a UI component for the "Update" button and integrate it into the event/article detail page.
+Frontend: Create a UI component for the "Update" button and integrate it into the event, article,profile and detail page.
 Backend: Implement API endpoints to handle update requests, validate user permissions, and update database records accordingly.
 
 ### Google Maps Integration for Location
