@@ -25,9 +25,10 @@ exports.up = function (knex) {
         .timestamp("updated_at")
         .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
     })
-    .createTable("event_comments", (table) => {
+    .createTable("events_comments", (table) => {
       table.increments("id").primary();
-      table.string("comments").notNullable();
+      table.string("name").notNullable();
+      table.text("comment").notNullable();
 
       table
         .integer("event_id")

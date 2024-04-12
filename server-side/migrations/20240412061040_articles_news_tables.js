@@ -13,6 +13,7 @@ exports.up = function (knex) {
     table.string("email").notNullable();
     table.string("phone").notNullable();
     table.string("images").notNullable();
+    table.string("timestamp").notNullable();
     table
       .integer("user_id")
       .unsigned()
