@@ -89,7 +89,7 @@ Data will be stored in a MySQL database, with tables for users, events, articles
 
 ### POST Authentication
 
-### POST /api/capstone/register
+### POST /api/capstone/signup
 
 - Register a new user.
 
