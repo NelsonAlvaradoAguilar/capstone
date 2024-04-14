@@ -8,7 +8,7 @@ const Signup = () => {
       <form className="signup__form">
         <div className="signup__input-container">
           {" "}
-          <label lassName="signup__labels" htmlFor="name">
+          <label className="signup__labels" htmlFor="name">
             Name:
             <br></br>
             <input
@@ -21,33 +21,33 @@ const Signup = () => {
         </div>
         <div className="signup__input-container">
           {" "}
-          <label lassName="signup__labels" htmlFor="name">
+          <label className="signup__labels" htmlFor="lastname">
             lastname:
             <br></br>
             <input
               className="signup__input"
               type="text"
-              name="name"
-              placeholder=" Lastame"
+              name="lastname"
+              placeholder="Lastname"
             />
           </label>
         </div>
         <div className="signup__input-container">
           {" "}
-          <label lassName="signup__labels" htmlFor="name">
+          <label className="signup__labels" htmlFor="country">
             country:
             <br></br>
             <input
               className="signup__input"
               type="text"
-              name="name"
+              name="country"
               placeholder="Country"
             />
           </label>
         </div>
         <div className="signup__input-container">
           {" "}
-          <label lassName="signup__labels" htmlFor="email">
+          <label className="signup__labels" htmlFor="email">
             Email:
             <br></br>
             <input
@@ -60,13 +60,13 @@ const Signup = () => {
         </div>
         <div className="signup__input-container">
           {" "}
-          <label lassName="signup__labels" htmlFor="email">
+          <label className="signup__labels" htmlFor="email">
             Profile image:
             <br></br>
             <input
               className="signup__input"
               type="file"
-              name="email"
+              name="profile_image"
               placeholder=" Profile image"
             />
           </label>
