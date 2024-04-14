@@ -22,6 +22,7 @@
   }
   &__btc-signup {
     @include signupBtn();
+    width: 45%;
     &--cancel {
       &:hover {
         border-color: #ff0000;
