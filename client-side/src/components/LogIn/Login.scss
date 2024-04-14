@@ -5,8 +5,6 @@
   top: 5rem;
   @include cards();
 
-  &__form {
-  }
   &__input-field {
     @include inputFld();
   }
