@@ -1,0 +1,20 @@
+@use "./parcials/colors" as *;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.App {
+  background-color: $bgrColr;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}

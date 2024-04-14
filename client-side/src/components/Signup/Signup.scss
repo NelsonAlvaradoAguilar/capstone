@@ -1,0 +1,32 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+.signup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  &__title {
+    color: $whiteTxt;
+  }
+  &__form {
+    @include cards();
+  }
+  &__labels {
+    @include labels();
+  }
+  &__input {
+    @include inputFld();
+  }
+  &__buttons-container {
+    @include containerBtn();
+  }
+  &__btc-signup {
+    @include signupBtn();
+    &--cancel {
+      &:hover {
+        border-color: #ff0000;
+        background-color: $secColr;
+      }
+    }
+  }
+}

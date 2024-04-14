@@ -7,7 +7,7 @@ function Header() {
   return (
     <section className="header">
       <Link to={"/"}>
-        <img className="header__logo" src={logo}></img>
+        <img className="header__logo" alt="/" src={logo}></img>
       </Link>
     </section>
   );

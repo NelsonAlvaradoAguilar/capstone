@@ -1,0 +1,27 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+.login {
+  position: relative;
+  top: 5rem;
+  @include cards();
+
+  &__form {
+  }
+  &__input-field {
+    @include inputFld();
+  }
+  &__buttons-container {
+    @include containerBtn();
+  }
+  &__btc-signup {
+    @include signupBtn();
+    &--login {
+      &:hover {
+        border-color: $secColr;
+        //  background-color:;
+
+        background-color: #b7d307;
+      }
+    }
+  }
+}

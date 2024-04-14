@@ -1,0 +1,57 @@
+@use "./colors" as *;
+@use "sass:math";
+@function rem($size) {
+  @return math.div($size, 16px) * 1rem;
+}
+
+@mixin cards {
+  box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
+  border: 1px solid $secBgr;
+  border-radius: rem(20px);
+  display: flex;
+  flex-direction: column;
+  background-color: $cardBgr;
+  margin: rem(48px) rem(16px) rem(48px) rem(16px);
+
+  padding: rem(24px) rem(48px) rem(24px) rem(48px);
+}
+
+@mixin inputFld {
+  border-radius: rem(4px);
+  background-color: $secColr;
+  height: rem(36px);
+  color: $secBgr;
+  margin-top: rem(4px);
+  margin-bottom: rem(12px);
+  border: 1px solid $secBgr;
+  width: 100%;
+  text-indent: rem(16px);
+}
+@mixin labels {
+  color: $labels;
+}
+@mixin containerBtn {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+@mixin signupBtn {
+  height: rem(28px);
+  width: 45%;
+  margin-top: rem(10px);
+  padding: rem(16px);
+  border-radius: rem(20px);
+  border: 1px solid $secBgr;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: $hover;
+  }
+}
+
+@mixin sectionHeader {
+  font-size: 1rem;
+}
