@@ -1,0 +1,10 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+
+.homeCards {
+  @include cards();
+  &__image {
+    width: 5rem;
+    height: 4rem;
+  }
+}

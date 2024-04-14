@@ -2,7 +2,7 @@ const router = require("express").Router();
 const ArticlesNewsController = require("../controllers/articlesNews-controller");
 
 router
-  .route("/articles")
+  .route("/news")
   .post(ArticlesNewsController.postArticlesAndNews)
   .get(ArticlesNewsController.getArticlesAndNewsList);
 
