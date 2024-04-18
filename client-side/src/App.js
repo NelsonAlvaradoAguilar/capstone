@@ -6,17 +6,26 @@ import Signup from "./components/Signup/Signup";
 import Profile from "./components/Profile/Profile";
 import LogIn from "./components/LogIn/Login";
 import HomePage from "./pages/HomePage/HomePage";
+import ClassesPage from "./pages/ClassesPage/ClassesPage";
+import SingleClass from "./components/ClassesDetails/ClassesDetails";
+
+//import SingleClass from "./components/SingleClass/ClassesDeatail";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
+
         <Routes>
           <Route path="/" element={<HomePage />} />
+
           <Route path="/home" element={<HomePage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<LogIn />} />
+          <Route path="/classes" element={<ClassesPage />} />
+          <Route path="/classes/:id" element={<SingleClass />} />
         </Routes>
 
         <Footer />
@@ -26,3 +35,4 @@ function App() {
 }
 
 export default App;
+//
