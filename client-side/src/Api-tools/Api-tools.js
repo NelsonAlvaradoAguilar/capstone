@@ -3,7 +3,7 @@ const apiUrl = "http://localhost:8080";
 const apiEndpoint = "/api/capstone/";
 const eventsEndpoint = `${apiUrl}${apiEndpoint}events`;
 const classesEndpoint = `${apiUrl}${apiEndpoint}classes`;
-const donationsAndNewEndpoint = `${apiUrl}${apiEndpoint}/news`;
+const donationsAndNewEndpoint = `${apiUrl}${apiEndpoint}news`;
 
 const getEvents = async () => {
   try {
@@ -25,6 +25,18 @@ const getClasses = async () => {
     );
   }
 };
+
+const getSigleClass = async (classId) => {
+  try {
+    const response = await axios.get(`${classesEndpoint}/${classId}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.log(
+      `Failed to get ${classId} from API with error message: ${error}`
+    );
+  }
+};
 const getDonationsAndNews = async () => {
   try {
     const response = await axios.get(`${donationsAndNewEndpoint}`);
@@ -36,4 +48,4 @@ const getDonationsAndNews = async () => {
   }
 };
 
-export { getEvents, getClasses, getDonationsAndNews };
+export { getEvents, getClasses, getDonationsAndNews, getSigleClass };
