@@ -2,5 +2,41 @@
 @use "../../parcials/colors" as *;
 
 .details {
+  display: flex;
+  flex-direction: column;
   @include cards();
+  &__img {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    align-self: center;
+    text-wrap: nowrap;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  &__contentContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+  }
+  &__description {
+    font-size: 0.9rem;
+  }
+  &__content {
+    border-top: 1px solid $secBgr;
+    margin-top: 1rem;
+  }
+  &__buttonR {
+    border-radius: 50%;
+    width: 3.8rem;
+    height: 3.8rem;
+    align-self: flex-end;
+    background-color: $secGrn;
+    border: 1px solid $secBgr;
+    &:hover {
+      border: 2px solid $secBgr;
+      box-shadow: 1px 3px 3px $secBgr;
+    }
+  }
 }
