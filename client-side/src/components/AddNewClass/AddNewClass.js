@@ -137,7 +137,12 @@ const AddNewClasses = () => {
             />
           </label>
         </div>
-        <button>Post</button>
+        <div className="add-classes__btn-container">
+          <button className="add-classes__btn-post add-classes__btn-post--cancel">
+            cancel
+          </button>
+          <button className="add-classes__btn-post ">Post</button>
+        </div>
       </form>
     </section>
   );

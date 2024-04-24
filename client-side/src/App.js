@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import ClassesPage from "./pages/ClassesPage/ClassesPage";
 import ClassesDetails from "./components/ClassesDetails/ClassesDetails";
 import AddNewClass from "./components/AddNewClass/AddNewClass";
+import ArticlesNewsPage from "./pages/ArticlesNewsPage/ArticlesNewsPage";
 //import SingleClass from "./components/SingleClass/ClassesDeatail";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/classes/:id" element={<ClassesDetails />} />
           <Route path="/AddNewClass" element={<AddNewClass />} />
+          <Route path="/news" element={<ArticlesNewsPage />} />
         </Routes>
 
         <Footer />

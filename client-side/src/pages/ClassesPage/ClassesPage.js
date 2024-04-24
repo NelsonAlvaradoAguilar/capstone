@@ -16,7 +16,6 @@ const ClassesPage = () => {
         setClassesList(classes);
       } catch (error) {
         console.error("Error fetching classes:", error);
-        // Handle error appropriately, e.g., show error message to the user
       }
     };
 

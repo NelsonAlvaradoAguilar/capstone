@@ -13,14 +13,14 @@ exports.up = function (knex) {
     table.string("email").notNullable();
     table.string("phone").notNullable();
     table.string("images").notNullable();
-    table.string("timestamp").notNullable();
+    table.string("date").notNullable();
     table
       .integer("user_id")
       .unsigned()
       .references("users.id")
       .onUpdate("CASCADE")
       .onDelete("CASCADE");
-    table.timestamp("created_at").defaultTo(knex.fn.now());
+    table.timestamp("timestampt").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")
       .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
