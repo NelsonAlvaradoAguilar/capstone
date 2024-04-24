@@ -7,8 +7,8 @@ import Profile from "./components/Profile/Profile";
 import LogIn from "./components/LogIn/Login";
 import HomePage from "./pages/HomePage/HomePage";
 import ClassesPage from "./pages/ClassesPage/ClassesPage";
-import SingleClass from "./components/ClassesDetails/ClassesDetails";
-
+import ClassesDetails from "./components/ClassesDetails/ClassesDetails";
+import AddNewClass from "./components/AddNewClass/AddNewClass";
 //import SingleClass from "./components/SingleClass/ClassesDeatail";
 
 function App() {
@@ -25,7 +25,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/classes" element={<ClassesPage />} />
-          <Route path="/classes/:id" element={<SingleClass />} />
+          <Route path="/classes/:id" element={<ClassesDetails />} />
+          <Route path="/AddNewClass" element={<AddNewClass />} />
         </Routes>
 
         <Footer />

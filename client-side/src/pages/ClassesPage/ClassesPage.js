@@ -6,29 +6,25 @@ import ClassesDetails from "../../components/ClassesDetails/ClassesDetails";
 import { useParams } from "react-router-dom";
 
 const ClassesPage = () => {
-  const { classesId } = useParams();
   const [classesList, setClassesList] = useState([]);
-  const [singleClass, setSingleClass] = useState({});
 
   useEffect(() => {
-    const getClassesList = async () => {
-      const classes = await getClasses();
-      console.log(classes);
-      setClassesList(classes);
-      console.log(classesList);
-    };
-    const getClass = async () => {
-      const resp = await getSigleClass(classesId);
-      setSingleClass(resp);
+    const getClassesData = async () => {
+      try {
+        const classes = await getClasses();
+        console.log(classes);
+        setClassesList(classes);
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+        // Handle error appropriately, e.g., show error message to the user
+      }
     };
 
-    getClassesList();
-    getClass();
-  }, [classesId]);
+    getClassesData();
+  }, []);
 
   return (
     <section className="classes">
-      {classesId && <ClassesDetails classes={singleClass} />}
       <ClassesList list={classesList} />
     </section>
   );

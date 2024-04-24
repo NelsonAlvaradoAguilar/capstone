@@ -1,0 +1,30 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+
+.add-classes {
+  @include cards();
+  &__imput-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+  &__title {
+    margin-top: 1rem;
+    align-self: center;
+  }
+  &__label {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input-field {
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid $secBgr;
+    padding: 0.2rem;
+    width: 100%;
+    margin-top: 0.4rem;
+    &--img {
+      border: none;
+    }
+  }
+}

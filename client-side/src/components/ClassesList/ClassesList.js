@@ -1,17 +1,22 @@
 import { Link } from "react-router-dom";
 import "./ClassesList.scss";
 
-const ClassesList = ({ list }) => {
+const ClassesList = (props) => {
+  const list = props.list;
   console.log(list);
-
   return (
-    <section className="list">
-      <ul>
+    <section className="classesList">
+      <ul className="classesList__container">
         {list.map((classes) => (
-          <li key={classes.id}>
-            <img className="list__images" alt="/" src={classes.images}></img>
-            <Link to={`/classes/${classes.id}`}>
-              <h1>{classes.title}</h1>
+          <li className="classesList__list" key={classes?.id}>
+            <Link className="classesList__link" to={`/classes/${classes.id}`}>
+              {" "}
+              <img
+                className="classesList__images"
+                alt="/"
+                src={classes?.images}
+              ></img>
+              <h1 className="classesList__title">{classes?.title}</h1>
               <div>{"rate"}</div>
             </Link>
           </li>
