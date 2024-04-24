@@ -6,6 +6,13 @@ const ClassesList = (props) => {
   console.log(list);
   return (
     <section className="classesList">
+      <div className="classesList__header-container">
+        {" "}
+        <h1 className="classesList__title">Classes available</h1>
+        <Link to={"/AddNewClass"}>
+          <button className="classesList__postBtn">Post yours</button>
+        </Link>
+      </div>
       <ul className="classesList__container">
         {list.map((classes) => (
           <li className="classesList__list" key={classes?.id}>
@@ -16,7 +23,7 @@ const ClassesList = (props) => {
                 alt="/"
                 src={classes?.images}
               ></img>
-              <h1 className="classesList__title">{classes?.title}</h1>
+              <h1 className="classesList__subtitle">{classes?.title}</h1>
               <div>{"rate"}</div>
             </Link>
           </li>

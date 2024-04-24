@@ -3,20 +3,20 @@ import "./HomePage.scss";
 import {
   getEvents,
   getClasses,
-  getDonationsAndNews,
+  getArticles_news,
 } from "../../Api-tools/Api-tools";
 import HomeCards from "../../components/HomeCards/HomeCards";
 import { Link } from "react-router-dom";
 const HomePage = () => {
   const [eventHome, setEventHome] = useState([]);
   const [classesHome, setClassesHome] = useState([]);
-  const [donationsAndNewsHome, setDonationsAndNewsHome] = useState([]);
+  const [getArticles_newsHome, setDonationsAndNewsHome] = useState([]);
   const getContentList = async () => {
     const events = await getEvents();
     setEventHome(events[0]);
     const classes = await getClasses();
     setClassesHome(classes[0]);
-    const donationsNews = await getDonationsAndNews();
+    const donationsNews = await getArticles_news();
     setDonationsAndNewsHome(donationsNews[0]);
   };
   useEffect(() => {
@@ -30,10 +30,12 @@ const HomePage = () => {
         {" "}
         <HomeCards title={classesHome.title} image={classesHome.images} />
       </Link>
-      <HomeCards
-        title={donationsAndNewsHome.title}
-        image={donationsAndNewsHome.images}
-      />
+      <Link to={"/news"}>
+        <HomeCards
+          title={getArticles_newsHome.title}
+          image={getArticles_newsHome.images}
+        />
+      </Link>
     </section>
   );
 };

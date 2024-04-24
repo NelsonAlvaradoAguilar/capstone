@@ -1,26 +1,8 @@
-import React, { useEffect, useState } from "react";
-import "./ClassesDetail.scss";
-import { getSigleClass } from "../../Api-tools/Api-tools";
-import { useParams } from "react-router-dom";
-const ClassesDetails = () => {
-  const { id } = useParams();
-  const [singleClass, setSingleClass] = useState({});
+import "./ArticlesNewsDetails,scss";
 
-  useEffect(() => {
-    const getSingleClassData = async () => {
-      try {
-        const resp = await getSigleClass(id);
-        console.log(resp);
-        setSingleClass(resp);
-      } catch (error) {
-        console.error(`Error fetching single class ${id}:`, error);
-      }
-    };
-
-    getSingleClassData();
-  }, [id]);
+const ArticlesNewsDetails = (params) => {
   return (
-    <section className="details">
+    <section>
       <h1 className="details__title">{singleClass?.title}</h1>
       <img className="details__img" src={singleClass?.images}></img>
       <div className="details__contentContainer">
@@ -43,4 +25,3 @@ const ClassesDetails = () => {
     </section>
   );
 };
-export default ClassesDetails;

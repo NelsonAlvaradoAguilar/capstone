@@ -13,7 +13,7 @@
     align-self: center;
     text-wrap: nowrap;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   &__contentContainer {
     display: flex;
@@ -24,8 +24,9 @@
     font-size: 0.9rem;
   }
   &__content {
-    border-top: 1px solid $secBgr;
+    border-bottom: 1px solid $secBgr;
     margin-top: 1rem;
+    margin-bottom: 0.2rem;
   }
   &__buttonR {
     border-radius: 50%;

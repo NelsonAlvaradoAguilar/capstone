@@ -1,11 +1,12 @@
 module.exports = [
   {
     id: 1,
+
     title: "Donating Books to Local Libraries",
     description:
       "Hey everyone! I have a collection of gently used books that I would love to donate to our local libraries. These books cover a wide range of genres, from fiction to non-fiction, and are in great condition. If you're interested in expanding your reading collection or know of any libraries in need, please feel free to reach out to me. Let's spread the joy of reading throughout our community!",
     location: "Northumberland, ON",
-    timestamp: "December 12, 2023",
+    date: "December 12, 2023",
     contact_name: "Emily Johnson",
     email: "emily.johnson@example.com",
     status: "Immediate",
@@ -17,7 +18,7 @@ module.exports = [
     title: "Toy Donation",
     description:
       "Sarah, a kind-hearted member of our community, has donated a box full of toys for children in need. Her thoughtful gesture will bring joy to many young hearts this holiday season. Let's follow Sarah's example and spread happiness through acts of kindness!",
-    timestamp: "December 5, 2024",
+    date: "December 5, 2024",
     location: "Northumberland County",
     status: "Immediate",
     contact_name: "Sarah",
@@ -30,7 +31,7 @@ module.exports = [
     title: "Toy Train Set Donation",
     description:
       "A generous donor has contributed a classic toy train set, complete with locomotive, cars, and tracks. This donation will bring joy to children who love trains and spark their imagination during playtime.",
-    timestamp: "March 15, 2024",
+    date: "March 15, 2024",
     location: "Northumberland County",
     status: "Immediate",
     contact_name: "jon",

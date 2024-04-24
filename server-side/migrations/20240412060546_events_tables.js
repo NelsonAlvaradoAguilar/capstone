@@ -20,7 +20,7 @@ exports.up = function (knex) {
         .references("users.id")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.timestamp("timestamp").defaultTo(knex.fn.now());
       table
         .timestamp("updated_at")
         .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
@@ -42,7 +42,7 @@ exports.up = function (knex) {
         .references("users.id")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
-      table.timestamp("created_at").defaultTo(knex.fn.now());
+      table.timestamp("timestamp").defaultTo(knex.fn.now());
       table
         .timestamp("updated_at")
         .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
