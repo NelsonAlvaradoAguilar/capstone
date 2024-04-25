@@ -29,15 +29,6 @@
     margin-bottom: 0.2rem;
   }
   &__buttonR {
-    border-radius: 50%;
-    width: 3.8rem;
-    height: 3.8rem;
-    align-self: flex-end;
-    background-color: $secGrn;
-    border: 1px solid $secBgr;
-    &:hover {
-      border: 2px solid $secBgr;
-      box-shadow: 1px 3px 3px $secBgr;
-    }
+    @include postBtn();
   }
 }

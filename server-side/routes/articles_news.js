@@ -5,5 +5,5 @@ router
   .route("/news")
   .post(ArticlesNewsController.postArticlesAndNews)
   .get(ArticlesNewsController.getArticlesAndNewsList);
-
+router.route("/news/:id").get(ArticlesNewsController.getSingleArticleNews);
 module.exports = router;

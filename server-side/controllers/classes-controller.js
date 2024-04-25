@@ -24,7 +24,7 @@ const getSingleClass = async (req, res) => {
     res.status(200).json(classData);
   } catch (error) {
     res.status(500).json({
-      message: `Unable to retrieve wareHouses data for class with ID ${req.params.id}`,
+      message: `Unable to retrieve data for class with ID ${req.params.id}`,
     });
   }
 };
