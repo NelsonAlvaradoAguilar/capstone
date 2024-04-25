@@ -25,12 +25,15 @@ const HomePage = () => {
   return (
     <section className="home">
       <button className="home__loginBtn">log in</button>
-      <HomeCards title={eventHome.title} image={eventHome.images} />
+      <Link className="home__link" to={"/events"}>
+        {" "}
+        <HomeCards title={eventHome.title} image={eventHome.images} />
+      </Link>
       <Link className="home__link" to={"/classes"}>
         {" "}
         <HomeCards title={classesHome.title} image={classesHome.images} />
       </Link>
-      <Link to={"/news"}>
+      <Link className="home__link" to={"/news"}>
         <HomeCards
           title={getArticles_newsHome.title}
           image={getArticles_newsHome.images}

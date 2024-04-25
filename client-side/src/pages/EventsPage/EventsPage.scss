@@ -1,0 +1,6 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+
+.events {
+  @include cards();
+}

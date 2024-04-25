@@ -6,19 +6,20 @@ const ClassesDetails = () => {
   const { id } = useParams();
   const [singleClass, setSingleClass] = useState({});
 
-  useEffect(() => {
-    const getSingleClassData = async () => {
-      try {
-        const resp = await getSigleClass(id);
-        console.log(resp);
-        setSingleClass(resp);
-      } catch (error) {
-        console.error(`Error fetching single class ${id}:`, error);
-      }
-    };
+  const getSingleClassData = async () => {
+    try {
+      const resp = await getSigleClass(id);
+      console.log(resp);
+      setSingleClass(resp);
+    } catch (error) {
+      console.error(`Error fetching single class ${id}:`, error);
+    }
+  };
 
+  useEffect(() => {
     getSingleClassData();
   }, [id]);
+
   return (
     <section className="details">
       <h1 className="details__title">{singleClass?.title}</h1>
