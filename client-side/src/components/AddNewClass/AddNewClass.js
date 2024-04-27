@@ -1,6 +1,7 @@
 import "./AddNewClass.scss";
-import { postNewClass } from "../../Api-tools/Api-tools";
+import { apiUrl, postNewClass } from "../../Api-tools/Api-tools";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddNewClasses = () => {
   const [title, setTitle] = useState("");
@@ -9,10 +10,13 @@ const AddNewClasses = () => {
   const [instructor, setInstructor] = useState("");
   const [date, setDate] = useState("");
   const [images, setImage] = useState("");
-
+  const navigate = useNavigate();
+  const calcel = () => {
+    navigate("/classes");
+  };
   const handleNewClasses = async (e) => {
     e.preventDefault();
-    // e.stopPropagation();
+
     try {
       const resp = await postNewClass(
         title,
@@ -23,7 +27,6 @@ const AddNewClasses = () => {
         images
       );
       console.log(resp);
-      // return resp.data;
     } catch (error) {
       console.log(`error posting ${error}`);
     }
@@ -50,8 +53,10 @@ const AddNewClasses = () => {
   };
 
   const handleOnChangeImage = (e) => {
-    setImage(e.target.value);
-    console.log(images);
+    const file = e.target.files[0];
+    const imagePath = `${apiUrl}/images/${file.name}`;
+    setImage(imagePath);
+    console.log(imagePath);
   };
 
   return (
@@ -130,7 +135,6 @@ const AddNewClasses = () => {
             Image:
             <input
               onChange={handleOnChangeImage}
-              value={images}
               name="image"
               className="add-classes__input-field add-classes__input-field--img"
               type="file"
@@ -138,7 +142,10 @@ const AddNewClasses = () => {
           </label>
         </div>
         <div className="add-classes__btn-container">
-          <button className="add-classes__btn-post add-classes__btn-post--cancel">
+          <button
+            onClick={calcel}
+            className="add-classes__btn-post add-classes__btn-post--cancel"
+          >
             cancel
           </button>
           <button className="add-classes__btn-post ">Post</button>

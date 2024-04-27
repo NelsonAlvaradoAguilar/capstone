@@ -1,8 +1,12 @@
 import "./Articles_newsList.scss";
-
-import { Link } from "react-router-dom";
+import arrowback from "../../assets/icons/icons8-back-arrow-64.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const Articles_newsList = ({ articles_newsList }) => {
+  const navigate = useNavigate();
+  const clickBack = () => {
+    navigate("/news");
+  };
   return (
     <section className="articles-container">
       {

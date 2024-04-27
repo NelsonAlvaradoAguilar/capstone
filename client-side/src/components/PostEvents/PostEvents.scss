@@ -1,0 +1,64 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+.post-event {
+  @include cards(); //  @include postBtn();
+  justify-content: center;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+  }
+  &__title {
+    align-self: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  &__input-container {
+    display: flex;
+    flex-direction: column;
+    &--entrance {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    // margin-top: 1rem;
+  }
+  &__label {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input-field {
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid $secBgr;
+    padding: 0.2rem;
+    width: 100%;
+    margin-top: 0.4rem;
+    &--img {
+      border: none;
+    }
+  }
+  &__btn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  &__post-btn {
+    @include postBtn;
+    height: 24px;
+    //  width: 45%;
+    width: 7rem;
+    justify-content: space-between;
+    border-radius: 8px;
+    border: 1px solid $secBgr;
+    &--cancel {
+      background-color: $secColr;
+      &:hover {
+        border: 1px solid red;
+      }
+    }
+  }
+}

@@ -1,11 +1,16 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ArticlesNewsDetails.scss";
 import { useEffect, useState } from "react";
 import { getSigleArticleNews } from "../../Api-tools/Api-tools";
+import arrowback from "../../assets/icons/icons8-back-arrow-64.png";
+
 const ArticlesNewsDetails = (params) => {
   const { id } = useParams();
   const [singleArticleNews, setSingleArticleNews] = useState({});
-
+  const navigate = useNavigate();
+  const clickBack = () => {
+    navigate(-1);
+  };
   const getSingleArticlesNewsData = async () => {
     try {
       const resp = await getSigleArticleNews(id);
@@ -27,41 +32,40 @@ const ArticlesNewsDetails = (params) => {
 
   return (
     <section className="articlel-details">
-      <h1 className="articlel-details__title">{singleArticleNews?.title}</h1>
+      <h1 className="articlel-details__title">{singleArticleNews.title}</h1>
       <img
         className="articlel-details__img"
-        src={singleArticleNews?.images}
+        src={singleArticleNews.images}
       ></img>
-
       <p className="articlel-details__description">
         {singleArticleNews?.description}
       </p>
-
       <div className="articlel-details__content">
         <h3 className="articlel-details__subtitle">Date:</h3>
         <p>{formattedDate}</p>
         <h3 className="articlel-details__subtitle">Location:</h3>
-        <p>{singleArticleNews?.location}</p>
+        <p>{singleArticleNews.location}</p>
       </div>
       <h2 className="articlel-details__subtitle articlel-details__subtitle--section">
         Contact information:
       </h2>
       <div className="articlel-details__content">
         <h3 className="articlel-details__subtitle">Name:</h3>
-        <p>{singleArticleNews?.contact_name}</p>
+        <p>{singleArticleNews.contact_name}</p>
       </div>
       <div className="articlel-details__content">
         <h3 className="articlel-details__subtitle">Phone: </h3>
-        <p>{singleArticleNews?.phone}</p>
+        <p>{singleArticleNews.phone}</p>
       </div>
       <div className="articlel-details__content">
         <h3 className="articlel-details__subtitle">Email:</h3>
-        <p>{singleArticleNews?.email}</p>
+        <p>{singleArticleNews.email}</p>
       </div>
-
-      <Link to={"/AddNewArticlesNews"}>
-        <button className="articlel-details__buttonP">Post yours</button>
-      </Link>
+      <img
+        onClick={clickBack}
+        className="articlel-details__icon"
+        src={arrowback}
+      ></img>{" "}
     </section>
   );
 };

@@ -13,6 +13,9 @@ import ArticlesNewsPage from "./pages/ArticlesNewsPage/ArticlesNewsPage";
 import ArticlesNewsDetails from "./components/ArticlesNewsDetails/ArticlesNewsDetails";
 import AddNewArticlesNews from "./components/AddNewArticlesNews/AddNewArticlesNews";
 import EventsPage from "./pages/EventsPage/EventsPage";
+import EventsDetails from "./components/EventsDetails/EventsDetails";
+import PostAComments from "./components/PostComments/PostComments";
+import PostAnEvent from "./components/PostEvents/PostEvents";
 //import SingleClass from "./components/SingleClass/ClassesDeatail";
 
 function App() {
@@ -35,6 +38,9 @@ function App() {
           <Route path="/news/:id" element={<ArticlesNewsDetails />} />
           <Route path="/AddNewArticlesNews" element={<AddNewArticlesNews />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/PostAnEvent" element={<PostAnEvent />} />
+          <Route path="/events/:id" element={<EventsDetails />} />
+          <Route path="/events/:id/comments" element={<PostAComments />} />
         </Routes>
 
         <Footer />

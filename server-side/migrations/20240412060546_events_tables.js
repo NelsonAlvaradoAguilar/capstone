@@ -11,8 +11,8 @@ exports.up = function (knex) {
       table.string("location").notNullable();
       table.string("entrance").notNullable();
 
-      table.string("price").notNullable();
-      table.string("date").notNullable();
+      table.decimal("price").notNullable();
+      table.dateTime("date").notNullable();
       table.string("images").notNullable();
       table
         .integer("user_id")
@@ -54,5 +54,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("event_comments").dropTable("events");
+  return knex.schema.dropTable("events_comments").dropTable("events");
 };

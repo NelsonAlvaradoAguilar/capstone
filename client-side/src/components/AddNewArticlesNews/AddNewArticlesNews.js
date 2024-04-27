@@ -2,6 +2,8 @@ import { useState } from "react";
 import { postArticlesNews } from "../../Api-tools/Api-tools";
 import "./AddNewArticlesNews.scss";
 import { apiUrl } from "../../Api-tools/Api-tools";
+import { useNavigate } from "react-router-dom";
+
 const AddNewArticlesNews = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -10,6 +12,10 @@ const AddNewArticlesNews = () => {
   const [images, setImage] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const calcel = () => {
+    navigate("/news");
+  };
   const handleArticlesAndNew = async (e) => {
     e.preventDefault();
     try {
@@ -22,6 +28,7 @@ const AddNewArticlesNews = () => {
         contact_name,
         images
       );
+      navigate("/news");
       console.log(resp);
     } catch (error) {
       console.log(`error posting ${error}`);
@@ -155,7 +162,10 @@ const AddNewArticlesNews = () => {
           </label>
         </div>
         <div className="add-articles-news__btn-container">
-          <button className="add-articles-news__btn-post add-articles-news__btn-post--cancel">
+          <button
+            onClick={calcel}
+            className="add-articles-news__btn-post add-articles-news__btn-post--cancel"
+          >
             cancel
           </button>
           <button className="add-articles-news__btn-post ">Post</button>
