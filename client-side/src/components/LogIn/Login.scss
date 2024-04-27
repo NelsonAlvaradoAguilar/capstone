@@ -1,0 +1,28 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+.login {
+  height: 100%;
+  @include cards();
+
+  &__input-field {
+    @include inputFld();
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__buttons-container {
+    @include containerBtn();
+  }
+  &__btc-signup {
+    @include signupBtn();
+    &--login {
+      &:hover {
+        border-color: $secColr;
+        //  background-color:;
+
+        background-color: #b7d307;
+      }
+    }
+  }
+}

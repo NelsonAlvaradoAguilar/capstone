@@ -1,0 +1,11 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+
+.events {
+  @include cards();
+  &__title {
+    align-self: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}

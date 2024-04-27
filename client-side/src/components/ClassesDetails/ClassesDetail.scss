@@ -1,0 +1,34 @@
+@use "../../parcials/mixin" as *;
+@use "../../parcials/colors" as *;
+
+.details {
+  display: flex;
+  flex-direction: column;
+  @include cards();
+  &__img {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  &__title {
+    align-self: center;
+    text-wrap: nowrap;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  &__contentContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+  }
+  &__description {
+    font-size: 0.9rem;
+  }
+  &__content {
+    border-bottom: 1px solid $secBgr;
+    margin-top: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  &__buttonR {
+    @include postBtn();
+  }
+}
