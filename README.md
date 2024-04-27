@@ -103,15 +103,15 @@ Data will be stored in a MySQL database, with tables for users, events, articles
 
 ### GET /api/capstone/events
 
-Get a list of community events.
+//Get a list of community events.
 
 ### POST /api/capstone/events
 
-Create a new event.
+//Create a new event.
 
 ### POST /api/capstone/events/:eventId/comments
 
-Post a comment on a specific event.
+//Post a comment on a specific event.
 
 ### Community Articles
 
@@ -119,11 +119,11 @@ Post a comment on a specific event.
 
 ### GET /api/capstone/articles
 
-Get a list of community articles.
+//Get a list of community articles.
 
 ### POST /api/capstone/articles
 
-Post a new article.
+//Post a new article.
 
 ### POST /api/capstone/articles/:articleId/comments
 
@@ -135,11 +135,11 @@ Post a comment on a specific article.
 
 ### GET /api/capstone/classes
 
-Get a list of art classes.
+//Get a list of art classes.
 
 ### POST /api/capstone/classes
 
-Post a new class
+//Post a new class
 
 ### POST /api/capstone/classes/:classId/register
 

@@ -26,14 +26,17 @@ const HomePage = () => {
     <section className="home">
       <button className="home__loginBtn">log in</button>
       <Link className="home__link" to={"/events"}>
-        {" "}
+        {""}
+        <h1 className="home__titles">Events</h1>
         <HomeCards title={eventHome.title} image={eventHome.images} />
       </Link>
       <Link className="home__link" to={"/classes"}>
         {" "}
+        <h1 className="home__titles">Classes</h1>
         <HomeCards title={classesHome.title} image={classesHome.images} />
       </Link>
       <Link className="home__link" to={"/news"}>
+        <h1 className="home__titles"> Donations and News</h1>
         <HomeCards
           title={getArticles_newsHome.title}
           image={getArticles_newsHome.images}

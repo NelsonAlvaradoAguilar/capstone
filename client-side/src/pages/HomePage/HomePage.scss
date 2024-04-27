@@ -8,10 +8,16 @@
   padding-right: 1.5rem;
   &__link {
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  &__titles {
+    align-self: center;
   }
   &__loginBtn {
     align-self: center;
     width: 5rem;
+    margin-bottom: 1rem;
     @include signupBtn();
     &:hover {
       background-color: $loghover;

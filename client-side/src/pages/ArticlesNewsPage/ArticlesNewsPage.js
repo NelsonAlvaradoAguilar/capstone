@@ -24,8 +24,8 @@ const ArticlesNewsPage = (params) => {
     <section className="articles-news">
       <div className="articles-news__header">
         {" "}
-        <h1 className="articles-news__title">News and donations</h1>
-        <Link to={"/"}>
+        <h1 className="articles-news__title">Donations and News </h1>
+        <Link to={"/AddNewArticlesNews"}>
           <button className="articles-news__postBtn">Post yours</button>
         </Link>
       </div>
