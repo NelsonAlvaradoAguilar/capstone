@@ -165,10 +165,13 @@ const postArticlesNews = async (
 };
 const Register = async (userId, classId) => {
   try {
-    const response = await axios.post(`${classesEndpoint}/${id}/register`, {
-      userId,
-      classId,
-    });
+    const response = await axios.post(
+      `${classesEndpoint}/${classId}/register`,
+      {
+        userId,
+        classId,
+      }
+    );
 
     return response;
   } catch (error) {
