@@ -19,6 +19,9 @@
   }
   &__buttons-container {
     @include containerBtn();
+    &--in-out {
+      margin-right: 3rem;
+    }
   }
   &__btc-signup {
     @include signupBtn();

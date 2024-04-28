@@ -24,24 +24,34 @@ const HomePage = () => {
   }, []);
   return (
     <section className="home">
-      <button className="home__loginBtn">log in</button>
-      <Link className="home__link" to={"/events"}>
-        {""}
-        <h1 className="home__titles">Events</h1>
-        <HomeCards title={eventHome.title} image={eventHome.images} />
+      <Link className="home__link" to={"/login"}>
+        <button className="home__loginBtn">log in</button>
       </Link>
-      <Link className="home__link" to={"/classes"}>
-        {" "}
-        <h1 className="home__titles">Classes</h1>
-        <HomeCards title={classesHome.title} image={classesHome.images} />
-      </Link>
-      <Link className="home__link" to={"/news"}>
-        <h1 className="home__titles"> Donations and News</h1>
-        <HomeCards
-          title={getArticles_newsHome.title}
-          image={getArticles_newsHome.images}
-        />
-      </Link>
+      <h1 className="home__title">Northumberland Hispanic Cultural Club</h1>
+      <p className="home__bio">
+        The Northumberland Hispanic Cultural Club, is a registered
+        not-for-profit organization that promotes and celebrates the arts,
+        cuisine, culture, Heritage and music of Latin Hispanic countries.
+      </p>
+      <div className="home__container">
+        <Link className="home__link" to={"/events"}>
+          {""}
+          <h1 className="home__subtitle">Events</h1>
+          <HomeCards title={eventHome.title} image={eventHome.images} />
+        </Link>
+        <Link className="home__link" to={"/classes"}>
+          {" "}
+          <h1 className="home__subtitle">Classes</h1>
+          <HomeCards title={classesHome.title} image={classesHome.images} />
+        </Link>
+        <Link className="home__link" to={"/news"}>
+          <h1 className="home__subtitle"> Donations and News</h1>
+          <HomeCards
+            title={getArticles_newsHome.title}
+            image={getArticles_newsHome.images}
+          />
+        </Link>
+      </div>
     </section>
   );
 };

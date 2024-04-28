@@ -11,8 +11,21 @@
     display: flex;
     flex-direction: column;
   }
-  &__titles {
+  &__subtitle {
     align-self: center;
+    color: $whiteTxt;
+  }
+  &__title {
+    color: $whiteTxt;
+    font-size: 1.7rem;
+  }
+  &__bio {
+    color: $whiteTxt;
+    padding-top: 1rem;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
   }
   &__loginBtn {
     align-self: center;
