@@ -8,7 +8,7 @@ import LogIn from "./components/LogIn/Login";
 import HomePage from "./pages/HomePage/HomePage";
 import ClassesPage from "./pages/ClassesPage/ClassesPage";
 import ClassesDetails from "./components/ClassesDetails/ClassesDetails";
-import AddNewClass from "./components/AddNewClass/AddNewClass";
+import PostNewClass from "./components/PostNewClass/PostNewClass";
 import ArticlesNewsPage from "./pages/ArticlesNewsPage/ArticlesNewsPage";
 import ArticlesNewsDetails from "./components/ArticlesNewsDetails/ArticlesNewsDetails";
 import AddNewArticlesNews from "./components/AddNewArticlesNews/AddNewArticlesNews";
@@ -16,6 +16,8 @@ import EventsPage from "./pages/EventsPage/EventsPage";
 import EventsDetails from "./components/EventsDetails/EventsDetails";
 import PostAComments from "./components/PostComments/PostComments";
 import PostAnEvent from "./components/PostEvents/PostEvents";
+import Login from "./pages/LoginPage/LoginPage";
+
 //import SingleClass from "./components/SingleClass/ClassesDeatail";
 
 function App() {
@@ -26,14 +28,14 @@ function App() {
 
         <Routes>
           <Route path="/" element={<HomePage />} />
-
           <Route path="/home" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+
           <Route path="/profile" element={<Profile />} />
-          <Route path="/login" element={<LogIn />} />
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/classes/:id" element={<ClassesDetails />} />
-          <Route path="/AddNewClass" element={<AddNewClass />} />
+          <Route path="/PostNewClass" element={<PostNewClass />} />
           <Route path="/news" element={<ArticlesNewsPage />} />
           <Route path="/news/:id" element={<ArticlesNewsDetails />} />
           <Route path="/AddNewArticlesNews" element={<AddNewArticlesNews />} />
@@ -50,4 +52,4 @@ function App() {
 }
 
 export default App;
-//
+//   <Route path="/" element={<HomePage />} />  <Route path="/login" element={<LogIn />} />

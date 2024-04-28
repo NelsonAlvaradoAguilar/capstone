@@ -3,7 +3,7 @@
 
 .homeCards {
   @include cards();
-  margin: 1rem 1rem 1rem 1rem;
+  // margin: 1rem 1rem 1rem 1rem;
   &__title {
     margin-bottom: 0.5rem;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -11,7 +11,8 @@
     font-size: 1rem;
   }
   &__image {
-    width: 100%;
+    display: flex;
+    // width: 100%;
     height: 6rem;
     border-radius: 4px;
   }

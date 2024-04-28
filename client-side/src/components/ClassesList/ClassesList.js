@@ -9,7 +9,7 @@ const ClassesList = (props) => {
       <div className="classesList__header-container">
         {" "}
         <h1 className="classesList__title">Classes available</h1>
-        <Link to={"/AddNewClass"}>
+        <Link to={"/postNewClass"}>
           <button className="classesList__postBtn">Post yours</button>
         </Link>
       </div>

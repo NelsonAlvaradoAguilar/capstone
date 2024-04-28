@@ -1,12 +1,13 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export const apiUrl = "http://localhost:8080";
 const apiEndpoint = "/api/capstone/";
 const eventsEndpoint = `${apiUrl}${apiEndpoint}events`;
 const classesEndpoint = `${apiUrl}${apiEndpoint}classes`;
 const articles_newsEndpoint = `${apiUrl}${apiEndpoint}news`;
-
+const signupEndpoint = `${apiUrl}${apiEndpoint}signup`;
+export const loginEndpoint = `${apiUrl}${apiEndpoint}login`;
+export const profileEndpoint = `${apiUrl}${apiEndpoint}profile`;
 const getEvents = async () => {
   try {
     const response = await axios.get(`${eventsEndpoint}`);
@@ -178,6 +179,26 @@ const Register = async (userId, classId) => {
     console.error("Error registering for class:", error);
   }
 };
+
+const signup = async (
+  name,
+  password,
+  country,
+  email,
+  lastname,
+  profile_image
+) => {
+  const resp = await axios.post(`${signupEndpoint}`, {
+    name,
+    password,
+    country,
+    email,
+    lastname,
+    profile_image,
+  });
+  return resp.data;
+};
+
 export {
   getEvents,
   getSigleEvent,
@@ -191,4 +212,5 @@ export {
   postNewComment,
   postEvent,
   Register,
+  signup,
 };
