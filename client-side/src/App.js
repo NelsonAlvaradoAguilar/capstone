@@ -4,7 +4,7 @@ import Header from "./components/Header/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Signup from "./components/Signup/Signup";
 import Profile from "./components/Profile/Profile";
-import LogIn from "./components/LogIn/Login";
+
 import HomePage from "./pages/HomePage/HomePage";
 import ClassesPage from "./pages/ClassesPage/ClassesPage";
 import ClassesDetails from "./components/ClassesDetails/ClassesDetails";
@@ -16,7 +16,7 @@ import EventsPage from "./pages/EventsPage/EventsPage";
 import EventsDetails from "./components/EventsDetails/EventsDetails";
 import PostAComments from "./components/PostComments/PostComments";
 import PostAnEvent from "./components/PostEvents/PostEvents";
-import Login from "./pages/LoginPage/LoginPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 //import SingleClass from "./components/SingleClass/ClassesDeatail";
 
@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<Signup />} />
 
           <Route path="/profile" element={<Profile />} />

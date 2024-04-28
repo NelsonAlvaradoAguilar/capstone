@@ -5,7 +5,7 @@ import axios from "axios";
 import { apiUrl, loginEndpoint, signup } from "../../Api-tools/Api-tools";
 import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
+function LoginPage() {
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
@@ -121,4 +121,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginPage;
