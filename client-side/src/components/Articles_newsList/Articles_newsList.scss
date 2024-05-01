@@ -16,16 +16,19 @@
   &__img {
     width: 100%;
     border-radius: 4px;
-    &:hover {
-      border: 1px solid red;
-    }
   }
   &__subtitle {
     padding-top: 0.5rem;
     margin-bottom: 1rem;
     border-top: 1px solid $secBgr;
+    text-align: center;
+    &--location {
+      text-align: center;
+    }
   }
+
   &__link {
     text-decoration: none;
+    color: $textColr;
   }
 }

@@ -1,32 +1,79 @@
+import ArrowBack from "../../assets/icons/icons8-back-arrow-64.png";
 import { useEffect, useState } from "react";
-import { Register } from "../../Api-tools/Api-tools";
-import { useParams } from "react-router-dom";
-
-const RegisteringForAClass = () => {
+import { Register, feedBack } from "../../Api-tools/Api-tools";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "./ClassRegistration.scss";
+import axios from "axios";
+const RegisteringForAClass = ({ class_id, user_id }) => {
   const [registrationStatus, setRegistrationStatus] = useState(null);
-  const { userId } = useParams(null);
-  const { classId } = useParams(null);
-
-  const registerTo = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const [comment, setComment] = useState();
+  const navigate = useNavigate();
+  const clickBack = () => {
+    navigate(-1);
+  };
+  const registerTo = async () => {
     try {
-      const resp = await Register(userId, classId);
-
-      console.log(resp);
-      return resp.data;
+      const resp = await Register(class_id, user_id);
+      setRegistrationStatus("success");
     } catch (error) {
-      console.error("Error fetching events data:", error);
+      setRegistrationStatus("error");
+      console.error("Error registering for class:", error);
     }
   };
-
-  useEffect(() => {
-    registerTo();
-  }, []);
-
+  const handleFeeback = async (e) => {
+    e.preventDefault();
+    try {
+      const resp = await feedBack(class_id, user_id, comment);
+      navigate("/classes");
+      return resp;
+    } catch (error) {
+      console.log(`error posting ${error}`);
+    }
+  };
+  const handleOnChangeComment = (e) => {
+    setComment(e.target.value);
+  };
   return (
-    <section className="events">
-      <h1 className="events__title">Events</h1>
+    <section>
+      {registrationStatus === "loading" && <div>Loading...</div>}
+
+      <div className="register">
+        {registrationStatus === "success" && (
+          <div>Registered successfully!</div>
+        )}
+        <div
+          className={`register__btn ${
+            registrationStatus === "success" ? "register__btn--succes" : ""
+          }`}
+          onClick={registerTo}
+        >
+          Register
+        </div>
+
+        <div className="register__comment">
+          <h1>Feedback</h1>
+          <form onSubmit={handleFeeback} className="register__form">
+            <label className="register__label">
+              <input
+                onChange={handleOnChangeComment}
+                className="register__imput"
+              />
+            </label>
+            <button className="register__button">Leave a feedback</button>
+          </form>
+        </div>
+      </div>
+      <div className="register__btn-container">
+        <img
+          onClick={clickBack}
+          className="register__img"
+          src={ArrowBack}
+        ></img>
+        <Link className="register__link" to={"/postNewClass"}>
+          Post a class
+        </Link>
+      </div>
     </section>
   );
 };
+export default RegisteringForAClass;

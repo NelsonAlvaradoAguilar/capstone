@@ -25,7 +25,7 @@ const Articles_newsList = ({ articles_newsList }) => {
                 <h3 className="articles-container__subtitle">
                   {articles.title}
                 </h3>
-                <p className="articles-container__location">
+                <p className="articles-container__subtitle--location">
                   {articles.location}
                 </p>
               </Link>{" "}

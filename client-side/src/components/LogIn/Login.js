@@ -1,67 +1,33 @@
-import { useState } from "react";
 import "./Login.scss";
-import { login, loginEndpoint } from "../../Api-tools/Api-tools";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-const LogIn = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  const cancel = () => {
-    navigate("/home");
-  };
-  const Logout = () => {
-    sessionStorage.removeItem("JWTtoken");
-    setIsLoggedIn(false);
-  };
-  const handleLogin = async (e) => {
-    e.preventDefault();
 
-    try {
-      const response = await axios.post(loginEndpoint, {
-        name,
-        email,
-        password,
-      });
-      console.log(response);
-      sessionStorage.setItem("jwt", response.data.token);
-      setIsLoggedIn(true);
-      setIsLoginError(false);
-      // setSuccessMessage(navigate("/profile"));
-      setErrorMessage("");
-    } catch (error) {
-      setIsLoginError(true);
-      setErrorMessage(error.response.data.error);
-    }
-  };
-  const handleOnChangeName = (e) => {
-    setName(e.target.value);
-    console.log(name);
-  };
-  const handleOnChangePassword = (e) => {
-    setPassword(e.target.value);
-    console.log(password);
-  };
-  const handleOnChangeEmail = (e) => {
-    setEmail(e.target.value);
-    console.log(email);
-  };
+import { Link } from "react-router-dom";
 
+const Login = ({
+  name,
+  email,
+  password,
+  handleOnChangeNamel,
+  handleOnChangeEmaill,
+  handleOnChangePasswordl,
+  handleLogin,
+  isLoginError,
+  errorMessage,
+
+  home,
+}) => {
   return (
     <section className="login">
       {isLoginError && <label style={{ color: "red" }}>{errorMessage}</label>}
+      <Link style={{ textDecoration: "none" }} to={"/signup"}>
+        <div className=" login__btc-signup ">Sign Up</div>
+      </Link>
       <form className="login__form" onSubmit={handleLogin}>
         <div>
           <label>
             Name:
             <input
               value={name}
-              onChange={handleOnChangeName}
+              onChange={handleOnChangeNamel}
               className="login__input-field"
               placeholder="name"
             />
@@ -72,7 +38,7 @@ const LogIn = (props) => {
             Email:
             <input
               value={email}
-              onChange={handleOnChangeEmail}
+              onChange={handleOnChangeEmaill}
               className="login__input-field"
               placeholder="Email"
             />
@@ -83,7 +49,7 @@ const LogIn = (props) => {
             password:
             <input
               value={password}
-              onChange={handleOnChangePassword}
+              onChange={handleOnChangePasswordl}
               className="login__input-field"
               placeholder="Password"
             />
@@ -91,8 +57,8 @@ const LogIn = (props) => {
         </div>
         <div className="login__buttons-container">
           {" "}
-          <button onClick={cancel} className="login__btc-signup " type="submit">
-            Sign Up
+          <button onClick={home} className="login__btc-signup " type="submit">
+            Cancel
           </button>
           <button type="submit" className=" login__btc-signup ">
             Log In
@@ -102,3 +68,4 @@ const LogIn = (props) => {
     </section>
   );
 };
+export default Login;

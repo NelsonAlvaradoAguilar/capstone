@@ -5,7 +5,7 @@ import {
   getClasses,
   getArticles_news,
 } from "../../Api-tools/Api-tools";
-import HomeCards from "../../components/HomeCards/HomeCards";
+
 import { Link } from "react-router-dom";
 const HomePage = () => {
   const [eventHome, setEventHome] = useState([]);
@@ -37,19 +37,16 @@ const HomePage = () => {
         <Link className="home__link" to={"/events"}>
           {""}
           <h1 className="home__subtitle">Events</h1>
-          <HomeCards title={eventHome.title} image={eventHome.images} />
+          <img className="home__image" src={eventHome.images} />
         </Link>
         <Link className="home__link" to={"/classes"}>
           {" "}
           <h1 className="home__subtitle">Classes</h1>
-          <HomeCards title={classesHome.title} image={classesHome.images} />
+          <img className="home__image" src={classesHome.images} />
         </Link>
         <Link className="home__link" to={"/news"}>
           <h1 className="home__subtitle"> Donations and News</h1>
-          <HomeCards
-            title={getArticles_newsHome.title}
-            image={getArticles_newsHome.images}
-          />
+          <img className="home__image" src={getArticles_newsHome.images} />
         </Link>
       </div>
     </section>
