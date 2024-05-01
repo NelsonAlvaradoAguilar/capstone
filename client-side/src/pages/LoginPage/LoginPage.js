@@ -4,7 +4,7 @@ import axios from "axios";
 import { loginEndpoint } from "../../Api-tools/Api-tools";
 import { useNavigate } from "react-router-dom";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import Login from "../../components/LogIn/Login";
+import Login from "../../components/Login/Login";
 
 function LoginPage() {
   const [isSignedUp, setIsSignedUp] = useState(false);
