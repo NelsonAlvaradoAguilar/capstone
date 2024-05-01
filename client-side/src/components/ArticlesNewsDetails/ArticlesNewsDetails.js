@@ -14,7 +14,7 @@ const ArticlesNewsDetails = (params) => {
   const getSingleArticlesNewsData = async () => {
     try {
       const resp = await getSigleArticleNews(id);
-      console.log(resp);
+
       setSingleArticleNews(resp);
     } catch (error) {
       console.error(`Error fetching single class ${id}:`, error);
@@ -61,11 +61,16 @@ const ArticlesNewsDetails = (params) => {
         <h3 className="articlel-details__subtitle">Email:</h3>
         <p>{singleArticleNews.email}</p>
       </div>
-      <img
-        onClick={clickBack}
-        className="articlel-details__icon"
-        src={arrowback}
-      ></img>{" "}
+      <div className="articlel-details__btn-container">
+        <Link className="articlel-details__postBtn" to={"/AddNewArticlesNews"}>
+          Post yours
+        </Link>
+        <img
+          onClick={clickBack}
+          className="articlel-details__icon"
+          src={arrowback}
+        ></img>{" "}
+      </div>
     </section>
   );
 };

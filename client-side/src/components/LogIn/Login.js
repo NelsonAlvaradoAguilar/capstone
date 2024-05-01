@@ -1,42 +1,71 @@
 import "./Login.scss";
 
-const LogIn = (props) => {
+import { Link } from "react-router-dom";
+
+const Login = ({
+  name,
+  email,
+  password,
+  handleOnChangeNamel,
+  handleOnChangeEmaill,
+  handleOnChangePasswordl,
+  handleLogin,
+  isLoginError,
+  errorMessage,
+
+  home,
+}) => {
   return (
     <section className="login">
-      <form className="login__form">
+      {isLoginError && <label style={{ color: "red" }}>{errorMessage}</label>}
+      <Link style={{ textDecoration: "none" }} to={"/signup"}>
+        <div className=" login__btc-signup ">Sign Up</div>
+      </Link>
+      <form className="login__form" onSubmit={handleLogin}>
         <div>
           <label>
             Name:
-            <input className="login__input-field" placeholder="name" />
+            <input
+              value={name}
+              onChange={handleOnChangeNamel}
+              className="login__input-field"
+              placeholder="name"
+            />
           </label>
         </div>
         <div>
           <label>
             Email:
-            <input className="login__input-field" placeholder="Email" />
+            <input
+              value={email}
+              onChange={handleOnChangeEmaill}
+              className="login__input-field"
+              placeholder="Email"
+            />
           </label>
         </div>
         <div>
           <label>
             password:
-            <input className="login__input-field" placeholder="Password" />
+            <input
+              value={password}
+              onChange={handleOnChangePasswordl}
+              className="login__input-field"
+              placeholder="Password"
+            />
           </label>
         </div>
+        <div className="login__buttons-container">
+          {" "}
+          <button onClick={home} className="login__btc-signup " type="submit">
+            Cancel
+          </button>
+          <button type="submit" className=" login__btc-signup ">
+            Log In
+          </button>
+        </div>
       </form>
-      <div className="login__buttons-container">
-        {" "}
-        <button className="login__btc-signup " type="submit">
-          Sign Up
-        </button>
-        <button
-          className=" login__btc-signup login__btc-signup--login"
-          type="submit"
-        >
-          Log In
-        </button>
-      </div>
     </section>
   );
 };
-
-export default LogIn;
+export default Login;

@@ -57,9 +57,81 @@ const postClasses = async (req, res) => {
     });
   }
 };
+const registerToClass = async (req, res) => {
+  const { user_id, class_id } = req.body;
+
+  if (!class_id) {
+    return res.status(400).json({
+      message: "Please provide user ID and class ID",
+    });
+  }
+
+  try {
+    const foundClass = await knex("classes").where({ id: class_id }).first();
+    if (!foundClass) {
+      return res.status(404).json({
+        message: `Class with ID ${class_id} not found`,
+      });
+    }
+
+    const foundUser = await knex("users").where({ id: user_id }).first();
+    if (!foundUser) {
+      return res.status(404).json({
+        message: `User with ID ${user_id} not found`,
+      });
+    }
+
+    // insert  the user and class data to register table
+    await knex("register").insert({
+      class_id: class_id,
+      user_id: user_id,
+    });
+
+    res.status(200).json({
+      message: `User ${user_id} registered successfully to class ${class_id}`,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: `Unable to register user to class: ${error}`,
+    });
+  }
+};
+
+const postFeedback = async (req, res) => {
+  const user_id = req.user?.id;
+  const class_id = req.params?.id;
+  const comment = req.body?.comment;
+
+  if (!comment || !class_id || !user_id) {
+    return res.status(400).json({
+      message: `Please provide all required information`,
+    });
+  }
+
+  try {
+    const result = await knex("class_rating").insert({
+      ...req.body,
+      class_id: class_id,
+    });
+
+    const newCommentId = result[0];
+    const newComment = await knex("class_rating").where({
+      id: newCommentId,
+    });
+
+    res.status(201).json(newComment);
+  } catch (error) {
+    res.status(500).json({
+      message: `Unable to post new feeback: ${error}`,
+    });
+  }
+};
 
 module.exports = {
   postClasses,
   getClassesList,
   getSingleClass,
+  registerToClass,
+  postFeedback,
 };
+///api/capstone/classes/:classId/comments

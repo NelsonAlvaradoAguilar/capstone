@@ -3,19 +3,17 @@
 
 .articles-news {
   @include cards();
-  &__header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-  }
+
   &__postBtn {
     width: 3rem;
     position: relative;
     border-radius: 8px;
     border: 1px solid;
     background-color: $secGrn;
+  }
+  &__title {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
   }
 }

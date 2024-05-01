@@ -1,4 +1,5 @@
 const router = require("express").Router();
+
 const usersController = require("../controllers/users-controller");
 
 router
@@ -6,12 +7,13 @@ router
   .post(usersController.signup)
   .get(usersController.getUsers);
 
+router.route("/login").post(usersController.login);
+
 router
-  .route("/login")
-  .post(usersController.login)
-  .get(usersController.getProfile);
-//router.route("/login").post(usersController.login);
+  .route("/profile")
+  .get(usersController.authorize, usersController.getProfile);
+
 router
-  .route("/login/profile")
-  .get(usersController.getProfile, usersController.authorize);
+  .route("/profile/logout")
+  .post(usersController.authorize, usersController.logout);
 module.exports = router;

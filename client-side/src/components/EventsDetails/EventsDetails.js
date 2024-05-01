@@ -24,11 +24,8 @@ const EventsDetails = () => {
     try {
       const resp = await getSigleEvent(id);
       const comments = await getEventsComments(id);
-      console.log(comments);
       setCommentsList(comments);
-      console.log(commentsList);
       setSingleEvent(resp);
-      console.log(resp);
       setCommnetsNumber(comments.length);
     } catch (error) {
       console.error(`Error fetching single class ${id}:`, error);
@@ -55,6 +52,11 @@ const EventsDetails = () => {
       </div>
 
       <p className="events-details__description">{singleEvent?.description}</p>
+      <div className="events-details__entrance-container">
+        <h3>Entrance:</h3>
+
+        <p>${singleEvent.price}</p>
+      </div>
       <div
         onClick={handleOpenModal}
         className="events-details__subtitle events-details__subtitle--arrow-back"
@@ -74,6 +76,7 @@ const EventsDetails = () => {
           </button>
         </Link>
       </div>
+
       <ul className="events-details__ul">
         {commentsList.map((comment, index) => (
           <li key={index}>
@@ -88,11 +91,7 @@ const EventsDetails = () => {
           </li>
         ))}
       </ul>
-      <div className="events-details__entrance-container">
-        <h3>Entrance:</h3>
 
-        <p>${singleEvent.price}</p>
-      </div>
       <div className="events-details__icon-container">
         <img
           onClick={clickBack}
@@ -113,11 +112,3 @@ const EventsDetails = () => {
   );
 };
 export default EventsDetails;
-//className="events-details__button"
-/**    <img
-          onClick={clickBack}
-          className={`events-details__icon ${
-            modalIsOpen === true ? "events-details__icon--back" : ""
-          }`}
-          src={arrowback}
-        ></img> */

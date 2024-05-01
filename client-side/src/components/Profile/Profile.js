@@ -1,17 +1,28 @@
 import "./Profile.scss";
 
-const Profile = (props) => {
+const Profile = ({ userInfo, logout }) => {
   return (
     <section className="profile">
-      <img className="profile__image">{props.profile_image}</img> {"image"}
+      <img
+        src={userInfo?.profile_image}
+        alt="/"
+        className="profile__image"
+      ></img>{" "}
+      {"image"}
       <div className="profile__data">
-        {"name"} <h2 className="profile__subtitle">{props.name}</h2>
-        {"lastname"} <p className="profile__subtitle">{props.lastname}</p>
-        {"country"} <p className="profile__subtitle">{props.country}</p>
-        {"email"} <p className="profile__subtitle">{props.email}</p>
+        <h2 className="profile__subtitle">{userInfo?.name}</h2>
+        <p className="profile__subtitle">{userInfo?.lastname}</p>
       </div>
+      <p className="profile__subtitle">{userInfo?.country}</p>
+      <p className="profile__subtitle">{userInfo?.email}</p>
+      <button
+        onClick={logout}
+        className="signup__btc-signup  signup__btc-signup--out"
+        type="submit"
+      >
+        Log out
+      </button>
     </section>
   );
 };
-
 export default Profile;
