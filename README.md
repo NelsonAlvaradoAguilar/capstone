@@ -8,7 +8,7 @@ Latin Club
 
 ## Overview
 
-Latin Club is an app designed to connect the Hispanic community in Northumberland County, providing a platform for sharing information, events, and experiences. It aims to facilitate communication and collaboration among its users, fostering a sense of community and support, experiences and help those who need it.
+Latin Club is a web app designed to connect the Hispanic community in Northumberland County, providing a platform for sharing information, events, and experiences. It aims to facilitate communication and collaboration among its users, fostering a sense of community and support, experiences and help those who need it.
 
 ### Problem
 
@@ -146,6 +146,8 @@ Post a comment on a specific article.
 Register for a specific art class.
 
 ### POST /api/capstone/classes/:classId/rate
+
+### POST /api/capstone/classes/:classId/feedback
 
 Post a new class, rate and provide feedback for a attended class.
 

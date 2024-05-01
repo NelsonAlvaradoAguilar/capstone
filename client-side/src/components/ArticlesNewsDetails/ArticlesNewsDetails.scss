@@ -28,8 +28,24 @@
       font-size: 1.3rem;
     }
   }
+  &__btn-container {
+    display: flex;
+    justify-content: space-between;
+  }
   &__icon {
     margin-top: 1rem;
     @include postBtn();
+  }
+  &__postBtn {
+    text-decoration: none;
+    color: $textColr;
+    border: 1px solid $secBgr;
+    align-self: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+
+    &:hover {
+      border-color: $loghover;
+    }
   }
 }

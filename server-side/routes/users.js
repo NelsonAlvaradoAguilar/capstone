@@ -12,6 +12,7 @@ router.route("/login").post(usersController.login);
 router
   .route("/profile")
   .get(usersController.authorize, usersController.getProfile);
+
 router
   .route("/profile/logout")
   .post(usersController.authorize, usersController.logout);

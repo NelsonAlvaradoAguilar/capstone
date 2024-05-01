@@ -12,7 +12,6 @@ const ClassesPage = () => {
     const getClassesData = async () => {
       try {
         const classes = await getClasses();
-        console.log(classes);
         setClassesList(classes);
       } catch (error) {
         console.error("Error fetching classes:", error);

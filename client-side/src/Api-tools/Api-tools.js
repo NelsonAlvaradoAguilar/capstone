@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 
 export const apiUrl = "http://localhost:8080";
 const apiEndpoint = "/api/capstone/";
@@ -69,7 +70,6 @@ const postEvent = async (
       images,
       price,
     });
-    console.log(response.data);
 
     return response.data;
   } catch (error) {
@@ -90,7 +90,7 @@ const getClasses = async () => {
 const getSigleClass = async (classesId) => {
   try {
     const response = await axios.get(`${classesEndpoint}/${classesId}`);
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log(
@@ -164,22 +164,37 @@ const postArticlesNews = async (
     console.log("this is the error", error);
   }
 };
-const Register = async (userId, classId) => {
+const Register = async (class_id, user_id) => {
   try {
     const response = await axios.post(
-      `${classesEndpoint}/${classId}/register`,
+      `${classesEndpoint}/${class_id}/register`,
       {
-        userId,
-        classId,
+        class_id: class_id,
+        user_id: user_id,
       }
     );
 
     return response;
   } catch (error) {
-    console.error("Error registering for class:", error);
+    console.error("Failed registering for class:", error);
   }
 };
+const feedBack = async (class_id, user_id, comment) => {
+  try {
+    const response = await axios.post(
+      `${classesEndpoint}/${class_id}/register`,
+      {
+        class_id: class_id,
+        user_id: user_id,
+        comment: comment,
+      }
+    );
 
+    return response;
+  } catch (error) {
+    console.error("Failed registering for class:", error);
+  }
+};
 const signup = async (
   name,
   password,
@@ -199,6 +214,25 @@ const signup = async (
   return resp.data;
 };
 
+const getAthorized = async () => {
+  const token = sessionStorage.getItem("JWTtoken");
+  if (!token) {
+    return "No JWTtoken found in sessionStorage";
+  }
+
+  try {
+    const response = await axios.get(profileEndpoint, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   getEvents,
   getSigleEvent,
@@ -213,4 +247,6 @@ export {
   postEvent,
   Register,
   signup,
+  getAthorized,
+  feedBack,
 };

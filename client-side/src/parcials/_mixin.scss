@@ -4,6 +4,15 @@
 @function rem($size) {
   @return math.div($size, 16px) * 1rem;
 }
+
+@font-face {
+  font-family: roboto medium;
+  src: url(../assets/fonts/Roboto_Mono/static/RobotoMono-Medium.ttf),
+    format(ttf);
+}
+@mixin font {
+  font-family: roboto medium;
+}
 @mixin glowing-border(
   $glow-color: $glow-color,
   $glow-intensity: $glow-intensity,
@@ -25,6 +34,18 @@
     animation: glow $animation-duration infinite alternate;
   }
 }
+
+@mixin tablet {
+  @media screen and (min-width: #{$tablet-breakpoint}) and (max-width: #{$below-desktop-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$desktop-breakpoint}) {
+    @content;
+  }
+}
 @mixin cards {
   box-shadow: 0px 2px 5px 0px rgba(19, 24, 44, 0.1);
   border: 1px solid $secBgr;
@@ -34,6 +55,8 @@
   background-color: $cardBgr;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  margin-left: rem(16px);
+  margin-right: rem(16px);
   padding: rem(16px) rem(32px) rem(16px) rem(32px);
 }
 

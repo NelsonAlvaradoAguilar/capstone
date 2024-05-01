@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./ClassesDetail.scss";
 import { getSigleClass } from "../../Api-tools/Api-tools";
 import { useParams } from "react-router-dom";
-const ClassesDetails = () => {
+import RegisteringForAClass from "../ClassRegistration/ClassRegistration";
+const ClassesDetails = ({ user_id, user_name, user_lastname }) => {
   const { id } = useParams();
   const [singleClass, setSingleClass] = useState({});
 
   const getSingleClassData = async () => {
     try {
       const resp = await getSigleClass(id);
-      console.log(resp);
+
       setSingleClass(resp);
     } catch (error) {
       console.error(`Error fetching single class ${id}:`, error);
@@ -40,7 +41,12 @@ const ClassesDetails = () => {
         </div>
       </div>
 
-      <button className="details__buttonR">Resgister</button>
+      <RegisteringForAClass
+        class_id={id}
+        user_id={user_id}
+        user_name={user_name}
+        user_lastname={user_lastname}
+      />
     </section>
   );
 };

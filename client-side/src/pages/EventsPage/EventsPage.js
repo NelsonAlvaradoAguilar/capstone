@@ -10,9 +10,7 @@ const EventsPage = () => {
   const getEventsData = async () => {
     try {
       const events = await getEvents();
-
       setEventsList(events);
-      console.log(events);
     } catch (error) {
       console.error("Error fetching events data:", error);
     }

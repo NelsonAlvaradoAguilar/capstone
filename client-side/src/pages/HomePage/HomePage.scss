@@ -6,10 +6,16 @@
 
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  @include tablet {
+    align-items: center;
+  }
   &__link {
     text-decoration: none;
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+    }
   }
   &__subtitle {
     align-self: center;
@@ -26,6 +32,11 @@
   &__container {
     display: flex;
     flex-direction: column;
+    @include tablet {
+      flex-direction: row;
+      margin-top: 8em;
+      margin-bottom: 8em;
+    }
   }
   &__loginBtn {
     align-self: center;
@@ -36,4 +47,17 @@
       background-color: $loghover;
     }
   }
+
+  &__image {
+    display: flex;
+
+    height: 6rem;
+    border-radius: 4px;
+    @include cards();
+    @include tablet {
+      height: 4rem;
+    }
+  }
 }
+
+// margin: 1rem 1rem 1rem 1rem;

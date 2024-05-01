@@ -11,7 +11,6 @@ const ArticlesNewsPage = (params) => {
     try {
       const resp = await getArticles_news();
       setArticles_news(resp);
-      console.log(resp);
     } catch (error) {
       console.log(`this error ${error}`);
     }
@@ -22,13 +21,8 @@ const ArticlesNewsPage = (params) => {
 
   return (
     <section className="articles-news">
-      <div className="articles-news__header">
-        {" "}
-        <h1 className="articles-news__title">Donations and News </h1>
-        <Link to={"/AddNewArticlesNews"}>
-          <button className="articles-news__postBtn">Post yours</button>
-        </Link>
-      </div>
+      <h1 className="articles-news__title">Donations and News </h1>
+
       <Articles_newsList articles_newsList={articles_news} />
     </section>
   );
