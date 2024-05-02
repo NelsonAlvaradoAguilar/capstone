@@ -6,17 +6,13 @@ const ClassesList = (props) => {
 
   return (
     <section className="classesList">
-      <div className="classesList__header-container">
-        {" "}
-        <h1 className="classesList__title">Classes available</h1>
-      </div>
-      <ul className="classesList__container">
+      <ul className="classesList__ul">
         {list.map((classes) => (
           <li className="classesList__list" key={classes?.id}>
             <Link className="classesList__link" to={`/classes/${classes.id}`}>
               {" "}
               <img
-                className="classesList__images"
+                className="classesList__img "
                 alt="/"
                 src={classes?.images}
               ></img>

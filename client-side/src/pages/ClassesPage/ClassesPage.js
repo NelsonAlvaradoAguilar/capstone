@@ -23,6 +23,8 @@ const ClassesPage = () => {
 
   return (
     <section className="classes">
+      <h1 className="classesList__title">Classes available</h1>
+
       <ClassesList list={classesList} />
     </section>
   );
