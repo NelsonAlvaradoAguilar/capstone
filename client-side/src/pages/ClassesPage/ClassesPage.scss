@@ -3,4 +3,7 @@
 
 .classes {
   @include cards();
+  &__title {
+    align-self: center;
+  }
 }

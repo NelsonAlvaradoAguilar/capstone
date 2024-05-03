@@ -17,6 +17,9 @@ const ClassesList = (props) => {
                 src={classes?.images}
               ></img>
               <h1 className="classesList__subtitle">{classes?.title}</h1>
+              <p className="classesList__subtitle classesList__subtitle--location">
+                {classes?.location}
+              </p>
             </Link>
           </li>
         ))}

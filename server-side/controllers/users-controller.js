@@ -49,9 +49,9 @@ const getUsers = async (req, res) => {
     res.status(400).send(`Error retrieving user: ${err}`);
   }
 };
-
 const signup = async (req, res) => {
-  const { name, password, country, email, lastname, profile_image } = req.body;
+  const { name, password, country, email, lastname } = req.body;
+  const profile_image = req.file ? req.file.path : "/default_profile_image.jpg";
 
   if (!name || !password || !country || !email || !lastname || !profile_image) {
     return res.status(400).json({
@@ -74,16 +74,14 @@ const signup = async (req, res) => {
     const newUserId = result[0];
     const createdUser = await knex("users").where({ id: newUserId });
 
-    res
-      .status(201)
-      .json(
-        `User has been successfully created: ${JSON.stringify(createdUser)}`
-      );
+    res.status(201).json({
+      message: "User has been successfully created",
+      user: createdUser,
+    });
   } catch (error) {
     res.status(500).json({ message: `Unable to create new user: ${error}` });
   }
 };
-
 const login = async (req, res) => {
   const { name, password, email } = req.body;
 
