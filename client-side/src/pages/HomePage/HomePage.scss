@@ -6,8 +6,19 @@
 
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
   @include tablet {
     align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0%;
+  }
+  @include desktop {
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 0%;
   }
   &__link {
     text-decoration: none;
@@ -15,49 +26,109 @@
     flex-direction: column;
 
     @include tablet {
+      margin-top: 2rem;
+    }
+    @include desktop {
+      margin-top: 2rem;
     }
   }
   &__subtitle {
     align-self: center;
     color: $whiteTxt;
+    @include tablet {
+      margin-bottom: 1rem;
+      text-wrap: nowrap;
+    }
+    @include desktop {
+      margin-bottom: 1rem;
+      text-wrap: nowrap;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    @include desktop {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
   }
   &__title {
     color: $whiteTxt;
     font-size: 1.7rem;
+    @include tablet {
+      font-size: 2rem;
+    }
+    @include desktop {
+      font-size: 2rem;
+    }
   }
   &__bio {
     color: $whiteTxt;
     padding-top: 1rem;
+
+    @include tablet {
+      font-size: 1.2rem;
+    }
+    @include desktop {
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__loginBtn {
+    align-self: center;
+    width: 5rem;
+    margin-bottom: 1rem;
+    @include signupBtn();
+    font-size: 1rem;
+    &:hover {
+      background-color: $loghover;
+    }
+
+    @include tablet {
+      visibility: hidden;
+    }
+    @include desktop {
+    }
+    &--visible {
+      visibility: hidden;
+
+      @include tablet {
+        visibility: visible;
+        margin-top: 2rem;
+      }
+      @include desktop {
+        margin-top: 2rem;
+      }
+    }
   }
   &__container {
     display: flex;
     flex-direction: column;
     @include tablet {
       flex-direction: row;
-      margin-top: 8em;
-      margin-bottom: 8em;
+      height: 20rem;
+    }
+    @include desktop {
+      flex-direction: row;
+      height: 20rem;
+      margin-bottom: 5rem;
     }
   }
-  &__loginBtn {
-    align-self: center;
-    width: 5rem;
-    margin-bottom: 1rem;
-    @include signupBtn();
-    &:hover {
-      background-color: $loghover;
-    }
-  }
-
   &__image {
     display: flex;
 
     height: 6rem;
     border-radius: 4px;
+
     @include cards();
     @include tablet {
-      height: 4rem;
+      width: 9rem;
+    }
+    @include desktop {
+      height: 10rem;
+      width: 15rem;
     }
   }
 }
-
-// margin: 1rem 1rem 1rem 1rem;

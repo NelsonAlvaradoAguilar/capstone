@@ -10,7 +10,7 @@ const Signup = () => {
   const [country, setCountry] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [profile_image, setProfile_image] = useState("");
+  const [profile_image, setProfile_image] = useState(null);
   const navigate = useNavigate();
   const cancel = () => {
     navigate("/");
@@ -19,19 +19,20 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const resp = await signup(
-        name,
-        password,
-        country,
-        email,
-        lastname,
-        profile_image
-      );
-      setIsSignedUp(true);
-      navigate("/home");
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("password", password);
+      formData.append("country", country);
+      formData.append("lastname", lastname);
+      formData.append("email", email);
+      formData.append("profile_image", profile_image); // Append profile image to form data
+
+      const resp = await signup(formData);
+      console.log("FormData:", formData);
       console.log(resp);
+      navigate("/home");
     } catch (error) {
-      console.log(`error signingup${error}`);
+      console.log(`Error signing up: ${error}`);
     }
   };
   const handleOnChangeName = (e) => {
@@ -56,10 +57,8 @@ const Signup = () => {
   };
 
   const handleOnChangeProfile_image = (e) => {
-    const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
-    setProfile_image(imagePath);
-    console.log(imagePath);
+    setProfile_image(e.target.files[0]);
+    console.log(profile_image);
   };
 
   return (
@@ -134,11 +133,10 @@ const Signup = () => {
             <br></br>
             <input
               onChange={handleOnChangeProfile_image}
-              title="file"
               className="signup__input"
               type="file"
               name="profile_image"
-              placeholder=" Profile image"
+              accept="image/*"
             />
           </label>
         </div>

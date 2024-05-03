@@ -1,5 +1,5 @@
 import "./PostNewClass.scss";
-import { apiUrl, postNewClass } from "../../Api-tools/Api-tools";
+import { apiUrl, apiEndpoint, postNewClass } from "../../Api-tools/Api-tools";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +54,7 @@ const PostNewClasses = () => {
 
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
+    const imagePath = `${apiUrl}${apiEndpoint}images/${file.name}`;
     setImage(imagePath);
     console.log(imagePath);
   };

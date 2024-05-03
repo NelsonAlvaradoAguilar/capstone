@@ -1,6 +1,7 @@
 import "./Profile.scss";
 
 const Profile = ({ userInfo, logout }) => {
+  console.log(userInfo.profile_image);
   return (
     <section className="profile">
       <img
