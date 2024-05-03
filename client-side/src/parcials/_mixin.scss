@@ -125,18 +125,48 @@
     background-color: white;
   }
   &__img {
+    display: flex;
     width: 100%;
     border-radius: 4px;
-    &:hover {
-      border: 1px solid red;
-    }
   }
   &__subtitle {
     padding-top: 0.5rem;
     margin-bottom: 1rem;
-    border-top: 1px solid $secBgr;
+    color: $textColr;
+    text-align: center;
+    &--location {
+      border-style: none;
+    }
   }
   &__link {
     text-decoration: none;
+  }
+
+  @include tablet {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    &__ul {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+    &__list {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+    &__link {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 15rem;
+    }
+    &__subtitle {
+      &--location {
+        margin-top: auto;
+      }
+    }
+    &__img {
+      height: 10rem;
+    }
   }
 }

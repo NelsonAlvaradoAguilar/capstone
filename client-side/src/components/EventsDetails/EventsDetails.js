@@ -55,7 +55,7 @@ const EventsDetails = () => {
       <div className="events-details__entrance-container">
         <h3>Entrance:</h3>
 
-        <p>${singleEvent.price}</p>
+        <p>${singleEvent?.price}</p>
       </div>
       <div
         onClick={handleOpenModal}
@@ -78,7 +78,7 @@ const EventsDetails = () => {
       </div>
 
       <ul className="events-details__ul">
-        {commentsList.map((comment, index) => (
+        {commentsList?.map((comment, index) => (
           <li key={index}>
             {modalIsOpen && (
               <Comments

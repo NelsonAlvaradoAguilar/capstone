@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const apiUrl = "http://localhost:8080";
-const apiEndpoint = "/api/capstone/";
+export const apiUrl = "http://localhost:8080",
+  apiEndpoint = "/api/capstone/";
 const eventsEndpoint = `${apiUrl}${apiEndpoint}events`;
 const classesEndpoint = `${apiUrl}${apiEndpoint}classes`;
 const articles_newsEndpoint = `${apiUrl}${apiEndpoint}news`;
@@ -195,23 +195,13 @@ const feedBack = async (class_id, user_id, comment) => {
     console.error("Failed registering for class:", error);
   }
 };
-const signup = async (
-  name,
-  password,
-  country,
-  email,
-  lastname,
-  profile_image
-) => {
-  const resp = await axios.post(`${signupEndpoint}`, {
-    name,
-    password,
-    country,
-    email,
-    lastname,
-    profile_image,
-  });
-  return resp.data;
+const signup = async (formData) => {
+  try {
+    const resp = await axios.post(`${signupEndpoint}`, formData);
+    return resp.data;
+  } catch (error) {
+    console.log("Error signing up:", error);
+  }
 };
 
 const getAthorized = async () => {

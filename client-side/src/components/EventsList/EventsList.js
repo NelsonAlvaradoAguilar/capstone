@@ -15,13 +15,13 @@ const EventsList = ({ List }) => {
                 to={`/events/${events.id}`}
               >
                 <img
-                  className="eventsList-container__img"
+                  className="eventsList-container__img "
                   src={events.images}
                 ></img>
                 <h3 className="eventsList-container__subtitle">
                   {events.title}
                 </h3>
-                <p className="eventsList-container__location">
+                <p className="eventsList-container__subtitle eventsList-container__subtitle--location">
                   {events.location}
                 </p>
               </Link>{" "}

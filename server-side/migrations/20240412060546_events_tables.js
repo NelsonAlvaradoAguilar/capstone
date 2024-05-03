@@ -13,7 +13,7 @@ exports.up = function (knex) {
 
       table.decimal("price").notNullable();
       table.dateTime("date").notNullable();
-      table.string("images").notNullable();
+      table.string("image");
       table
         .integer("user_id")
         .unsigned()

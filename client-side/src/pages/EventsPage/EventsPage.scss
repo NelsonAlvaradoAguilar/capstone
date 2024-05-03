@@ -3,6 +3,9 @@
 
 .events {
   @include cards();
+  @include tablet {
+  }
+
   &__title {
     align-self: center;
     margin-top: 1rem;
