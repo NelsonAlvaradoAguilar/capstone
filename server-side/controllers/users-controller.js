@@ -25,6 +25,7 @@ const getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+    const imagePath = user.profile_image.replace("public/", "");
 
     const userProfile = {
       id: user.id,
@@ -33,7 +34,7 @@ const getProfile = async (req, res) => {
       country: user.country,
       email: user.email,
       lastname: user.lastname,
-      profile_image: user.profile_image,
+      profile_image: `http://localhost:8080/${imagePath}`,
     };
     res.json(userProfile);
   } catch (error) {
