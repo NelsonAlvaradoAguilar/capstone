@@ -51,9 +51,25 @@ const getSigleEvent = async (id) => {
     console.log(`Failed to get ${id} from API with error message: ${error}`);
   }
 };
-const postEvent = async (formData) => {
+const postEvent = async (
+  title,
+  description,
+  location,
+  entrance,
+  date,
+  images,
+  price
+) => {
   try {
-    const response = await axios.post(`${eventsEndpoint}`, formData);
+    const response = await axios.post(`${eventsEndpoint}`, {
+      title,
+      description,
+      location,
+      entrance,
+      date,
+      images,
+      price,
+    });
 
     return response.data;
   } catch (error) {
