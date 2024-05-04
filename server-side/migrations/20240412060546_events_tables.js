@@ -12,7 +12,7 @@ exports.up = function (knex) {
       table.string("entrance").notNullable();
 
       table.decimal("price").notNullable();
-      table.dateTime("date").notNullable();
+      table.string("date").notNullable();
       table.string("images");
       table
         .integer("user_id")
