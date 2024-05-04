@@ -13,24 +13,53 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 app.use(express.json());
 
-const storage = multer.diskStorage({
+const usersStorage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/images");
   },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
+  filename: (req, file, cb) => {
+    let filetype = "";
+    if (file.mimetype === "image/gif") {
+      filetype = "gif";
+    }
+    if (file.mimetype === "image/png") {
+      filetype = "png";
+    }
+    if (file.mimetype === "image/jpeg") {
+      filetype = "jpg";
+    }
+    cb(null, "image-" + Date.now() + "." + filetype);
   },
 });
 
-const upload = multer({ storage: storage });
-const PORT = process.env.PORT || 5050;
-const userRoutes = require("./routes/users");
-app.use("/api/capstone", upload.single("profile_image"), userRoutes);
-
-app.use("/api/capstone", userRoutes);
-
 const eventsRoutes = require("./routes/events");
 app.use("/api/capstone", eventsRoutes);
+const eventsStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/events");
+  },
+  filename: (req, file, cb) => {
+    let filetype = "";
+    if (file.mimetype === "image/gif") {
+      filetype = "gif";
+    }
+    if (file.mimetype === "image/png") {
+      filetype = "png";
+    }
+    if (file.mimetype === "image/jpeg") {
+      filetype = "jpg";
+    }
+    cb(null, "image-" + Date.now() + "." + filetype);
+  },
+});
+
+const uploadUsers = multer({ storage: usersStorage });
+const uploadEvents = multer({ storage: eventsStorage });
+const PORT = process.env.PORT || 5050;
+const userRoutes = require("./routes/users");
+app.use("/api/capstone", uploadUsers.single("profile_image"), userRoutes);
+app.use("/api/capstone", uploadEvents.single("image"), eventsRoutes);
+app.use("/api/capstone", userRoutes);
 
 const classesRoutes = require("./routes/classes");
 app.use("/api/capstone", classesRoutes);
