@@ -20,16 +20,17 @@ function PostAnEvent(params) {
   };
   const handlePostNewEvent = async (e) => {
     e.preventDefault();
+
     try {
-      const resp = await postEvent(
-        title,
-        description,
-        date,
-        price,
-        entrance,
-        location,
-        image
-      );
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("date", date);
+      formData.append("price", price);
+      formData.append("entrance", entrance);
+      formData.append("location", location);
+      formData.append("image", image);
+      const resp = await postEvent(formData);
       clickBack();
       console.log(resp);
       // return resp.data;
@@ -76,10 +77,9 @@ function PostAnEvent(params) {
     console.log(e.target.value);
   };
   const handleOnChangeImage = (e) => {
-    const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
-    setImage(imagePath);
-    console.log(imagePath);
+    setImage(e.target.files[0]);
+
+    console.log(image);
   };
   const handleOnPriceChange = (e) => {
     setPrice(e.target.value);
