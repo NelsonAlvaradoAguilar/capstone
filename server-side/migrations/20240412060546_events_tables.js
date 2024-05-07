@@ -7,13 +7,13 @@ exports.up = function (knex) {
     .createTable("events", (table) => {
       table.increments("id").primary();
       table.string("title").notNullable();
-      table.string("description", 1000).notNullable();
+      table.string("description").notNullable();
       table.string("location").notNullable();
       table.string("entrance").notNullable();
-
-      table.decimal("price").notNullable();
-      table.string("date").notNullable();
       table.string("images");
+      table.string("price").notNullable();
+      table.string("date").notNullable();
+
       table
         .integer("user_id")
         .unsigned()

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [isSignedUp, setIsSignedUp] = useState(false);
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("");
@@ -30,7 +31,7 @@ const Signup = () => {
       const resp = await signup(formData);
       console.log("FormData:", formData);
       console.log(resp);
-      navigate("/home");
+      navigate("/profile");
     } catch (error) {
       console.log(`Error signing up: ${error}`);
     }
@@ -63,7 +64,6 @@ const Signup = () => {
 
   return (
     <section className="signup">
-      {" "}
       <h2 className="signup__title">Sign Up</h2>
       <form className="signup__form" onSubmit={handleSignup}>
         <div className="signup__input-container">

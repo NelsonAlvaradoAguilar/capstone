@@ -10,7 +10,7 @@ function PostAnEvent(params) {
   const [entrance, setEntrance] = useState("No");
   const [price, setPrice] = useState("0");
   const [date, setDate] = useState("");
-  const [image, setImage] = useState("");
+  const [images, setImages] = useState("");
   const navigate = useNavigate();
   const calcel = () => {
     navigate("/events");
@@ -28,25 +28,12 @@ function PostAnEvent(params) {
         price,
         entrance,
         location,
-        image
+        images
       );
-      clickBack();
+      calcel();
       console.log(resp);
-      // return resp.data;
     } catch (error) {
       console.log(`error posting ${error}`);
-    }
-    if (
-      !title ||
-      !description ||
-      !date ||
-      !price ||
-      !entrance ||
-      !location ||
-      !image
-    ) {
-      alert("Please complete all fields to post new event");
-      return;
     }
   };
 
@@ -78,7 +65,7 @@ function PostAnEvent(params) {
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
     const imagePath = `${apiUrl}/images/${file.name}`;
-    setImage(imagePath);
+    setImages(imagePath);
     console.log(imagePath);
   };
   const handleOnPriceChange = (e) => {
@@ -96,7 +83,6 @@ function PostAnEvent(params) {
             <div className="post-event__input">
               <input
                 className="post-event__input-field"
-                type="text"
                 placeholder="Title"
                 name="title"
                 id="title"
@@ -128,7 +114,6 @@ function PostAnEvent(params) {
             <div className="post-event__input">
               <input
                 className="post-event__input-field"
-                type="text"
                 placeholder=" Location"
                 name="Location"
                 id=" Location"
@@ -144,7 +129,6 @@ function PostAnEvent(params) {
             <div className="post-event__input">
               <input
                 className="post-event__input-field "
-                type="text"
                 placeholder="Event description..."
                 name="description"
                 id="description"
@@ -185,7 +169,6 @@ function PostAnEvent(params) {
               <div className="post-event__input">
                 <input
                   className="post-event__input-field"
-                  type="number"
                   placeholder="$0.00"
                   name="Price"
                   id="Price"
@@ -204,9 +187,7 @@ function PostAnEvent(params) {
               <input
                 className="post-event__input-field post-event__input-field--img "
                 type="file"
-                placeholder="Upload an image."
-                name="image"
-                id="image"
+                name="images"
                 onChange={handleOnChangeImage}
               />
             </div>
@@ -220,7 +201,9 @@ function PostAnEvent(params) {
           >
             {" Cancel"}
           </button>
-          <button className="post-event__post-btn">post </button>
+          <button type="submit" className="post-event__post-btn">
+            post{" "}
+          </button>
         </div>
       </form>
     </section>

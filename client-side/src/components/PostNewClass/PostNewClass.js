@@ -54,7 +54,7 @@ const PostNewClasses = () => {
 
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    const imagePath = `${apiUrl}${apiEndpoint}images/${file.name}`;
+    const imagePath = `${apiUrl}/images/${file.name}`;
     setImage(imagePath);
     console.log(imagePath);
   };
@@ -148,7 +148,9 @@ const PostNewClasses = () => {
           >
             cancel
           </button>
-          <button className="add-classes__btn-post ">Post</button>
+          <button type="submit" className="add-classes__btn-post ">
+            Post
+          </button>
         </div>
       </form>
     </section>
