@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../../components/Profile/Profile";
 import HomePage from "../HomePage/HomePage";
 import { getAthorized } from "../../Api-tools/Api-tools";
-const ProfilePage = ({}) => {
+const ProfilePage = ({ login }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState(null);
   const [user_id, setUser_id] = useState(null);
-
+  const [signUpStatus, setSignUpStatus] = useState(null);
   const navigate = useNavigate();
 
   const logingOut = () => {
@@ -36,6 +36,7 @@ const ProfilePage = ({}) => {
         setIsLoading(false);
         setUserInfo(resp);
         setUser_id(resp.id);
+        setSignUpStatus("success");
       } catch (error) {
         console.error(error);
       }
@@ -47,7 +48,11 @@ const ProfilePage = ({}) => {
   return isLoading ? (
     <HomePage />
   ) : (
-    <Profile userInfo={userInfo} logout={logout} />
+    <>
+      {" "}
+      {signUpStatus === "success" && <div>You have created an account</div>}
+      <Profile userInfo={userInfo} logout={logout} />
+    </>
   );
 };
 

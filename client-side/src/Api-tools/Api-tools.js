@@ -3,7 +3,8 @@ import { useState } from "react";
 
 export const apiUrl = "http://localhost:8080",
   apiEndpoint = "/api/capstone/";
-const eventsEndpoint = `${apiUrl}${apiEndpoint}events`;
+
+const eventsEndpoint = `${apiUrl}${apiEndpoint}/events`;
 const classesEndpoint = `${apiUrl}${apiEndpoint}classes`;
 const articles_newsEndpoint = `${apiUrl}${apiEndpoint}news`;
 const signupEndpoint = `${apiUrl}${apiEndpoint}signup`;
@@ -53,24 +54,24 @@ const getSigleEvent = async (id) => {
 };
 const postEvent = async (
   title,
-  description,
   location,
-  entrance,
+  description,
   date,
+  entrance,
   images,
   price
 ) => {
   try {
     const response = await axios.post(`${eventsEndpoint}`, {
       title,
-      description,
       location,
-      entrance,
+      description,
       date,
+      entrance,
       images,
       price,
     });
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log("Failed to post new event", error);

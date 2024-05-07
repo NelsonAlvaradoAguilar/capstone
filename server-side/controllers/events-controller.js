@@ -51,20 +51,18 @@ const getEvents = async (req, res) => {
 
 const getSingleEvent = async (req, res) => {
   try {
-    const event = await knex("events").where({
+    const foundEvent = await knex("events").where({
       id: req.params.id,
     });
 
-    if (!event) {
+    if (foundEvent.length === 0) {
       return res.status(404).json({
         message: `Event with ID ${req.params.id} not found`,
       });
     }
 
-    const eventData = event[0];
-
-    console.log(eventData);
-    res.status(200).json(eventData);
+    const EventData = foundEvent[0];
+    res.status(200).json(EventData);
   } catch (error) {
     res.status(500).json({
       message: `Unable to retrieve data for event with ID ${req.params.id}`,
@@ -73,16 +71,14 @@ const getSingleEvent = async (req, res) => {
 };
 
 const postEvents = async (req, res) => {
-  const { title, location, description, entrance, date, price } = req.body;
-  const image = req.file ? req.file.path : "/default_image.jpg";
   if (
-    !title ||
-    !description ||
-    !location ||
-    !entrance ||
-    !date ||
-    !image ||
-    !price
+    !req.body.title ||
+    !req.body.description ||
+    !req.body.location ||
+    !req.body.entrance ||
+    !req.body.date ||
+    !req.body.price ||
+    !req.body.images
   ) {
     return res.status(400).json({
       message: `Please provide all required information`,

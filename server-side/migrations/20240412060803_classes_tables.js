@@ -11,7 +11,7 @@ exports.up = function (knex) {
       table.string("date").notNullable();
       table.string("location").notNullable();
       table.string("instructor").notNullable();
-      table.string("images").notNullable();
+      table.string("images");
       table
         .integer("user_id")
         .unsigned()
