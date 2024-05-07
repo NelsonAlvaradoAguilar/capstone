@@ -168,7 +168,9 @@ const AddNewArticlesNews = () => {
           >
             cancel
           </button>
-          <button className="add-articles-news__btn-post ">Post</button>
+          <button type="submit" className="add-articles-news__btn-post ">
+            Post
+          </button>
         </div>
       </form>
     </section>
