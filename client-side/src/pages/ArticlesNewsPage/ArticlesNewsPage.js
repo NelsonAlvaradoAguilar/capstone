@@ -4,6 +4,7 @@ import Articles_newsList from "../../components/Articles_newsList/Articles_newsL
 import { getArticles_news } from "../../Api-tools/Api-tools";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Buttons from "../../components/Buttons/Buttons";
 
 const ArticlesNewsPage = (params) => {
   const [articles_news, setArticles_news] = useState([]);
@@ -21,8 +22,12 @@ const ArticlesNewsPage = (params) => {
 
   return (
     <section className="articles-news">
-      <h1 className="articles-news__title">Donations and News </h1>
-
+      <div className="articles-news__header">
+        <h1 className="articles-news__title">Donations and News </h1>
+        <Link to={"/AddNewArticlesNews"}>
+          <Buttons />
+        </Link>
+      </div>
       <Articles_newsList articles_newsList={articles_news} />
     </section>
   );

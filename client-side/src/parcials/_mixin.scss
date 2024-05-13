@@ -100,18 +100,42 @@
   font-size: 1rem;
 }
 @mixin postBtn {
-  border-radius: 50%;
+  border-radius: 4px;
   width: 3.8rem;
-  height: 3.8rem;
   align-self: flex-end;
-  background-color: $secGrn;
-  border: 1px solid $secBgr;
+  background-image: url("../../assets/icons/icons8-add-48.png");
+  height: 48px;
+  border: none;
+  background-color: $cardBgr;
+  background-repeat: no-repeat;
+  background-position: center;
   &:hover {
     border: 2px solid $secBgr;
     box-shadow: 1px 3px 3px $secBgr;
   }
 }
-
+@mixin postBtnForms {
+  height: 24px;
+  &:hover {
+    background-color: $loghover;
+  }
+  width: 7rem;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid $secBgr;
+  &--cancel {
+    background-color: $secColr;
+    &:hover {
+      border: 1px solid red;
+      background-color: $secColr;
+    }
+  }
+}
+@mixin clickBack {
+  background-color: $loghover;
+  border-radius: 50%;
+  width: 50px;
+}
 @mixin list-style {
   display: flex;
   flex-direction: column;

@@ -5,10 +5,17 @@
   @include cards();
   @include tablet {
   }
-
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__title {
     align-self: center;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
+  }
+  &__button {
+    @include postBtn();
   }
 }

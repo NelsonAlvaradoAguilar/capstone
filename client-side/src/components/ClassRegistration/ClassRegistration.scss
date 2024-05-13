@@ -70,6 +70,7 @@
     }
   }
   &__img {
-    @include postBtn();
+    @include clickBack();
+    margin-left: auto;
   }
 }

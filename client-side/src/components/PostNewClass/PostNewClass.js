@@ -11,7 +11,7 @@ const PostNewClasses = () => {
   const [date, setDate] = useState("");
   const [images, setImage] = useState("");
   const navigate = useNavigate();
-  const calcel = () => {
+  const cancel = () => {
     navigate("/classes");
   };
   const handleNewClasses = async (e) => {
@@ -26,6 +26,7 @@ const PostNewClasses = () => {
         date,
         images
       );
+      navigate("/classes");
       console.log(resp);
     } catch (error) {
       console.log(`error posting ${error}`);
@@ -143,7 +144,7 @@ const PostNewClasses = () => {
         </div>
         <div className="add-classes__btn-container">
           <button
-            onClick={calcel}
+            onClick={cancel}
             className="add-classes__btn-post add-classes__btn-post--cancel"
           >
             cancel

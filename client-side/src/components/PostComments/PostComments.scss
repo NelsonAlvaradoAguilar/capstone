@@ -32,16 +32,6 @@
     margin-top: 3rem;
   }
   &__post-btn {
-    @include postBtn;
-    height: 24px;
-    width: 45%;
-    border-radius: 8px;
-    border: 1px solid $secBgr;
-    &--cancel {
-      background-color: $secColr;
-      &:hover {
-        border: 1px solid red;
-      }
-    }
+    @include postBtnForms();
   }
 }

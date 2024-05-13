@@ -4,9 +4,12 @@ import { Register, feedBack } from "../../Api-tools/Api-tools";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "./ClassRegistration.scss";
 import axios from "axios";
-const RegisteringForAClass = ({ class_id, user_id }) => {
+const RegisteringForAClass = ({ class_id, user_id, userInfo, class_info }) => {
   const [registrationStatus, setRegistrationStatus] = useState(null);
   const [comment, setComment] = useState();
+  console.log(userInfo);
+  console.log(user_id);
+  console.log(class_info);
   const navigate = useNavigate();
   const clickBack = () => {
     navigate(-1);
@@ -24,7 +27,7 @@ const RegisteringForAClass = ({ class_id, user_id }) => {
     e.preventDefault();
     try {
       const resp = await feedBack(class_id, user_id, comment);
-      navigate("/classes");
+      clickBack();
       return resp;
     } catch (error) {
       console.log(`error posting ${error}`);
@@ -39,7 +42,11 @@ const RegisteringForAClass = ({ class_id, user_id }) => {
 
       <div className="register">
         {registrationStatus === "success" && (
-          <div>Registered successfully!</div>
+          <div>
+            {" "}
+            `Registered user {userInfo.name} to class {class_info.title}{" "}
+            successfully!`
+          </div>
         )}
         <div
           className={`register__btn ${
@@ -69,9 +76,6 @@ const RegisteringForAClass = ({ class_id, user_id }) => {
           className="register__img"
           src={ArrowBack}
         ></img>
-        <Link className="register__link" to={"/postNewClass"}>
-          Post a class
-        </Link>
       </div>
     </section>
   );

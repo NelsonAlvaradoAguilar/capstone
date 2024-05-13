@@ -3,7 +3,8 @@ import { getClasses, getSigleClass } from "../../Api-tools/Api-tools";
 import ClassesList from "../../components/ClassesList/ClassesList";
 import "./ClassesPage.scss";
 import ClassesDetails from "../../components/ClassesDetails/ClassesDetails";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import Buttons from "../../components/Buttons/Buttons";
 
 const ClassesPage = () => {
   const [classesList, setClassesList] = useState([]);
@@ -23,8 +24,12 @@ const ClassesPage = () => {
 
   return (
     <section className="classes">
-      <h1 className="classes__title">Classes available</h1>
-
+      <div className="classes__header">
+        <h1 className="classes__title">Classes available</h1>
+        <Link to={"/PostNewClass"}>
+          <Buttons />
+        </Link>
+      </div>
       <ClassesList list={classesList} />
     </section>
   );
