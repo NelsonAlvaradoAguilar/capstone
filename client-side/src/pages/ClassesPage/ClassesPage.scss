@@ -3,6 +3,11 @@
 
 .classes {
   @include cards();
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
   &__title {
     align-self: center;
   }

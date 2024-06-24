@@ -38,7 +38,7 @@ function App() {
       console.log(error);
     }
   };
-
+  console.log(user_id);
   useEffect(() => {
     getUserInfo();
   }, []);
@@ -57,14 +57,17 @@ function App() {
           <Route path="/classes" element={<ClassesPage />} />
           <Route
             path="/classes/:id"
-            element={<ClassesDetails user_id={user_id} />}
+            element={<ClassesDetails user_id={user_id} userInfo={userInfo} />}
           />
           <Route path="/PostNewClass" element={<PostNewClass />} />
           <Route path="/news" element={<ArticlesNewsPage />} />
           <Route path="/news/:id" element={<ArticlesNewsDetails />} />
           <Route path="/AddNewArticlesNews" element={<AddNewArticlesNews />} />
           <Route path="/events" element={<EventsPage />} />
-          <Route path="/PostAnEvent" element={<PostAnEvent />} />
+          <Route
+            path="/PostAnEvent"
+            element={<PostAnEvent user_id={user_id} />}
+          />
           <Route
             path="/classes/:id/register"
             element={<RegisteringForAClass />}

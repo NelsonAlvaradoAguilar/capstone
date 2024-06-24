@@ -34,18 +34,7 @@
   }
   &__icon {
     margin-top: 1rem;
-    @include postBtn();
-  }
-  &__postBtn {
-    text-decoration: none;
-    color: $textColr;
-    border: 1px solid $secBgr;
-    align-self: center;
-    margin-top: 1rem;
-    padding: 0.5rem;
-
-    &:hover {
-      border-color: $loghover;
-    }
+    @include clickBack();
+    margin-left: auto;
   }
 }

@@ -61,10 +61,10 @@ const signup = async (req, res) => {
   }
 
   try {
-    const usersData = await knex("users").where({ email });
+    // const usersData = await knex("users").where({ email });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await knex("users").insert({
+    const newUser = await knex("users").insert({
       name,
       password: hashedPassword,
       country,
@@ -72,7 +72,7 @@ const signup = async (req, res) => {
       lastname,
       profile_image,
     });
-    const newUserId = result[0];
+    const newUserId = newUser[0];
     const createdUser = await knex("users").where({ id: newUserId });
 
     res.status(201).json({
