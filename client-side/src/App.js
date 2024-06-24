@@ -64,7 +64,10 @@ function App() {
           <Route path="/news/:id" element={<ArticlesNewsDetails />} />
           <Route path="/AddNewArticlesNews" element={<AddNewArticlesNews />} />
           <Route path="/events" element={<EventsPage />} />
-          <Route path="/PostAnEvent" element={<PostAnEvent />} />
+          <Route
+            path="/PostAnEvent"
+            element={<PostAnEvent user_id={user_id} />}
+          />
           <Route
             path="/classes/:id/register"
             element={<RegisteringForAClass />}

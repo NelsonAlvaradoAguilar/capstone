@@ -4,7 +4,7 @@ import { useState } from "react";
 export const apiUrl = "http://localhost:8080",
   apiEndpoint = "/api/capstone/";
 
-const eventsEndpoint = `${apiUrl}${apiEndpoint}/events`;
+const eventsEndpoint = `${apiUrl}${apiEndpoint}events`;
 const classesEndpoint = `${apiUrl}${apiEndpoint}classes`;
 const articles_newsEndpoint = `${apiUrl}${apiEndpoint}news`;
 const signupEndpoint = `${apiUrl}${apiEndpoint}signup`;
@@ -52,25 +52,13 @@ const getSigleEvent = async (id) => {
     console.log(`Failed to get ${id} from API with error message: ${error}`);
   }
 };
-const postEvent = async (
-  title,
-  location,
-  description,
-  date,
-  entrance,
-  images,
-  price
-) => {
+const postEvent = async (formDat, user_id) => {
   try {
-    const response = await axios.post(`${eventsEndpoint}`, {
-      title,
-      location,
-      description,
-      date,
-      entrance,
-      images,
-      price,
-    });
+    const response = await axios.post(
+      `${eventsEndpoint}/${user_id}`,
+      formDat,
+      user_id
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {

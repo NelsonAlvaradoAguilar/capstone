@@ -41,9 +41,17 @@ const postComment = async (req, res) => {
 };
 const getEvents = async (req, res) => {
   try {
-    const events = await knex("events");
+    const events = await knex("events").select("*");
 
-    res.status(200).json(events);
+    const updatedEvents = events.map((event) => {
+      const imagePath = event.images.replace("public/", "");
+      return {
+        ...event,
+        images: `http://localhost:8080/${imagePath}`, // Update to your server URL if different
+      };
+    });
+
+    res.status(200).json(updatedEvents);
   } catch (err) {
     res.status(400).send(`Error retrieving events: ${err}`);
   }
@@ -51,17 +59,29 @@ const getEvents = async (req, res) => {
 
 const getSingleEvent = async (req, res) => {
   try {
-    const foundEvent = await knex("events").where({
-      id: req.params.id,
-    });
+    const event = await knex("events")
+      .where({
+        id: req.params.id,
+      })
+      .first();
 
-    if (foundEvent.length === 0) {
+    if (!event) {
       return res.status(404).json({
         message: `Event with ID ${req.params.id} not found`,
       });
     }
-
-    const EventData = foundEvent[0];
+    const imagePath = event.images.replace("public/", "");
+    console.log(imagePath);
+    const EventData = {
+      id: event.id,
+      title: event.title,
+      description: event.description,
+      date: event.date,
+      price: event.price,
+      entrance: event.entrance,
+      location: event.location,
+      images: `http://localhost:8080/${imagePath}`,
+    };
     res.status(200).json(EventData);
   } catch (error) {
     res.status(500).json({
@@ -69,28 +89,61 @@ const getSingleEvent = async (req, res) => {
     });
   }
 };
-
 const postEvents = async (req, res) => {
+  const { title, description, date, price, entrance, location } = req.body;
+  const userId = req.params.id;
+  const images = req.file ? req.file.path : "/default_profile_image.jpg";
+
+  // Validate required fields
   if (
-    !req.body.title ||
-    !req.body.description ||
-    !req.body.location ||
-    !req.body.entrance ||
-    !req.body.date ||
-    !req.body.price ||
-    !req.body.images
+    !title ||
+    !description ||
+    !date ||
+    !price ||
+    !entrance ||
+    !location ||
+    !images ||
+    !userId
   ) {
     return res.status(400).json({
       message: `Please provide all required information`,
     });
   }
-  try {
-    const result = await knex("events").insert(req.body);
-
-    const neweventId = result[0];
-    const createdEvent = await knex("events").where({
-      id: neweventId,
+  /*
+  // Validate and format date
+  const formattedDate = new Date(date);
+  if (isNaN(formattedDate.getTime())) {
+    return res.status(400).json({
+      message: `Invalid date format`,
     });
+  }
+
+  // Convert price to a number
+  const numericPrice = parseFloat(price);
+  if (isNaN(numericPrice)) {
+    return res.status(400).json({
+      message: `Invalid price format`,
+    });
+  }*/
+
+  try {
+    const newEvent = await knex("events").insert({
+      title,
+      description,
+      date,
+      price,
+      entrance,
+      location,
+      images,
+      user_id: userId,
+    });
+
+    const neweventId = newEvent[0];
+    const createdEvent = await knex("events")
+      .where({
+        id: neweventId,
+      })
+      .first(); // Use .first() to get a single event object
 
     res.status(201).json(createdEvent);
   } catch (error) {

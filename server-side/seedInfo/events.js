@@ -8,7 +8,7 @@ module.exports = [
     location: "Cobourg, ON",
     entrance: "yes",
     price: 3,
-    images: "http://localhost:8080/images/PHOTO-2024-04-04-10-44-09.jpg",
+    images: "images/PHOTO-2024-04-04-10-44-09.jpg",
     comments: [
       {
         id: 1,
@@ -39,8 +39,7 @@ module.exports = [
     location: "Lions Community Centre, 157 Elgin Street",
     entrance: "yes",
     price: 2,
-    images:
-      "http://localhost:8080/images/WhatsApp Image 2024-04-02 at 22.11.14.jpeg",
+    images: "images/WhatsApp Image 2024-04-02 at 22.11.14.jpeg",
     comments: [
       {
         id: 1,
@@ -70,7 +69,7 @@ module.exports = [
     location: "Memorial Center.Peterborough, ON",
     entrance: "yes",
     price: 1,
-    images: "http://localhost:8080/images/PHOTO-2024-04-02-17-36-12.jpg",
+    images: "images/PHOTO-2024-04-02-17-36-12.jpg",
     comments: [
       {
         id: 1,
