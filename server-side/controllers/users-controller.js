@@ -52,7 +52,9 @@ const getUsers = async (req, res) => {
 };
 const signup = async (req, res) => {
   const { name, password, country, email, lastname } = req.body;
-  const images = req.file ? req.file.path : "/default_profile_image.jpg";
+  const images = req.file
+    ? `images/${req.file.filename}`
+    : "images/default_image.jpg";
 
   if (!name || !password || !country || !email || !lastname || !images) {
     return res.status(400).json({
