@@ -14,7 +14,7 @@ module.exports = [
     email: "emily.johnson@example.com",
 
     phone: "+10000000000",
-    images: "http://localhost:8080/images/PHOTO-2024-03-23-11-01-28.jpg",
+    images: "images/PHOTO-2024-03-23-11-01-28.jpg",
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ module.exports = [
     contact_name: "Sarah",
     email: "Sarah@example.com",
     phone: "+20000000000",
-    images: "http://localhost:8080/images/PHOTO-2024-03-23-11-03-48.jpg",
+    images: "images/PHOTO-2024-03-23-11-03-48.jpg",
   },
   {
     id: 3,
@@ -46,6 +46,6 @@ module.exports = [
     contact_name: "jon",
     email: "jond@example.com",
     phone: "+30000000000",
-    images: "http://localhost:8080/images/istockphoto-157400439-612x612.jpg",
+    images: "images/istockphoto-157400439-612x612.jpg",
   },
 ];

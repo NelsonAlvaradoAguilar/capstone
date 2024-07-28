@@ -92,8 +92,13 @@ const getSingleEvent = async (req, res) => {
 const postEvents = async (req, res) => {
   const { title, description, date, price, entrance, location } = req.body;
   const userId = req.params.id;
-  const images = req.file ? req.file.path : "/default_profile_image.jpg";
+  const imagePath = req.file
+    ? `images/${req.file.filename}`
+    : "images/default_image.jpg";
 
+  console.log("Request body:", req.body);
+  console.log("Request file:", req.file);
+  console.log("Request params:", req.params);
   // Validate required fields
   if (
     !title ||
@@ -102,7 +107,7 @@ const postEvents = async (req, res) => {
     !price ||
     !entrance ||
     !location ||
-    !images ||
+    !imagePath ||
     !userId
   ) {
     return res.status(400).json({
@@ -134,7 +139,7 @@ const postEvents = async (req, res) => {
       price,
       entrance,
       location,
-      images,
+      images: imagePath,
       user_id: userId,
     });
 

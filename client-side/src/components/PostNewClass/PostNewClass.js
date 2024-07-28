@@ -3,13 +3,13 @@ import { apiUrl, apiEndpoint, postNewClass } from "../../Api-tools/Api-tools";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const PostNewClasses = () => {
+const PostNewClasses = ({ user_id: user_id }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [instructor, setInstructor] = useState("");
   const [date, setDate] = useState("");
-  const [images, setImage] = useState("");
+  const [images, setImage] = useState(null);
   const navigate = useNavigate();
   const cancel = () => {
     navigate("/classes");
@@ -18,14 +18,16 @@ const PostNewClasses = () => {
     e.preventDefault();
 
     try {
-      const resp = await postNewClass(
-        title,
-        description,
-        location,
-        instructor,
-        date,
-        images
-      );
+      const formData = new FormData();
+
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("date", date);
+      formData.append("location", location);
+      formData.append("instructor", instructor);
+      formData.append("images", images);
+
+      const resp = await postNewClass(formData, user_id);
       navigate("/classes");
       console.log(resp);
     } catch (error) {
@@ -55,9 +57,9 @@ const PostNewClasses = () => {
 
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
-    setImage(imagePath);
-    console.log(imagePath);
+
+    setImage(file);
+    console.log(file);
   };
 
   return (
@@ -136,9 +138,10 @@ const PostNewClasses = () => {
             Image:
             <input
               onChange={handleOnChangeImage}
-              name="image"
+              name="images"
               className="add-classes__input-field add-classes__input-field--img"
               type="file"
+              accept="image/*"
             />
           </label>
         </div>

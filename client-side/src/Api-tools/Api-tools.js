@@ -87,27 +87,22 @@ const getSigleClass = async (classesId) => {
     );
   }
 };
-const postNewClass = async (
-  title,
-  description,
-  location,
-  instructor,
-  date,
-  images
-) => {
+const postNewClass = async (formData, user_id) => {
   try {
-    const response = await axios.post(`${classesEndpoint}`, {
-      title,
-      description,
-      location,
-      instructor,
-      date,
-      images,
-    });
-
+    const response = await axios.post(
+      `${classesEndpoint}/${user_id}`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log("this is the error", error);
+    console.log("Error posting new class:", error);
+    throw error; // Rethrow the error so the calling function can handle it
   }
 };
 const getArticles_news = async () => {
@@ -128,25 +123,12 @@ const getSigleArticleNews = async (id) => {
     console.log(`Failed to get ${id} from API with error message: ${error}`);
   }
 };
-const postArticlesNews = async (
-  title,
-  description,
-  location,
-  contact_name,
-  email,
-  phone,
-  images
-) => {
+const postArticlesNews = async (formData, user_id) => {
   try {
-    const response = await axios.post(`${articles_newsEndpoint}`, {
-      title,
-      description,
-      location,
-      contact_name,
-      email,
-      phone,
-      images,
-    });
+    const response = await axios.post(
+      `${articles_newsEndpoint}/${user_id}`,
+      formData
+    );
 
     return response.data;
   } catch (error) {

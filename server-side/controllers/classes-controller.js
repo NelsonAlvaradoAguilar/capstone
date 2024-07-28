@@ -2,25 +2,43 @@ const knex = require("knex")(require("../knexfile"));
 
 const getClassesList = async (req, res) => {
   try {
-    const classes = await knex("classes");
-    res.status(200).json(classes);
+    const classes = await knex("classes").select("*");
+    const updatedClasses = classes.map((classData) => {
+      const imagePath = classData.images.replace("public/", "");
+      return {
+        ...classData,
+        images: `http://localhost:8080/${imagePath}`, // Update to your server URL if different
+      };
+    });
+    res.status(200).json(updatedClasses);
   } catch (err) {
     res.status(400).send(`Error retrieving classes: ${err}`);
   }
 };
 const getSingleClass = async (req, res) => {
   try {
-    const foundClass = await knex("classes").where({
-      id: req.params.id,
-    });
+    const classes = await knex("classes")
+      .where({
+        id: req.params.id,
+      })
+      .first();
 
-    if (foundClass.length === 0) {
+    if (!classes) {
       return res.status(404).json({
         message: `class with ID ${req.params.id} not found`,
       });
     }
-
-    const classData = foundClass[0];
+    const imagePath = classes.images.replace("public/", "");
+    console.log(imagePath);
+    const classData = {
+      id: classes.id,
+      title: classes.title,
+      description: classes.description,
+      date: classes.date,
+      location: classes.location,
+      instructor: classes.instructor,
+      images: `http://localhost:8080/${imagePath}`,
+    };
     res.status(200).json(classData);
   } catch (error) {
     res.status(500).json({
@@ -29,26 +47,38 @@ const getSingleClass = async (req, res) => {
   }
 };
 const postClasses = async (req, res) => {
-  if (
-    !req.body.title ||
-    !req.body.description ||
-    !req.body.date ||
-    !req.body.location ||
-    !req.body.instructor ||
-    !req.body.images
-  ) {
+  const { title, description, location, date, instructor } = req.body;
+  const userId = req.params.id;
+  const imagePath = req.file
+    ? `images/${req.file.filename}`
+    : "images/default_image.jpg";
+
+  console.log("Request body:", req.body);
+  console.log("Request file:", req.file);
+  console.log("Request params:", req.params);
+  // Validate required fields
+  if (!title || !description || !date || !location || !instructor || !userId) {
     return res.status(400).json({
       message: `Please provide all required information`,
     });
   }
 
   try {
-    const result = await knex("classes").insert(req.body);
-
-    const newClasstId = result[0];
-    const createdClass = await knex("classes").where({
-      id: newClasstId,
+    // Insert new class
+    const newClasses = await knex("classes").insert({
+      title,
+      description,
+      date,
+      location,
+      instructor,
+      images: imagePath,
+      user_id: userId,
     });
+
+    const newClassId = newClasses[0];
+    const createdClass = await knex("classes")
+      .where({ id: newClassId })
+      .first();
 
     res.status(201).json(createdClass);
   } catch (error) {

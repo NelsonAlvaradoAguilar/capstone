@@ -11,7 +11,7 @@ const Signup = () => {
   const [country, setCountry] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
-  const [profile_image, setProfile_image] = useState(null);
+  const [images, setImages] = useState(null);
   const navigate = useNavigate();
   const cancel = () => {
     navigate("/");
@@ -26,7 +26,7 @@ const Signup = () => {
       formData.append("country", country);
       formData.append("lastname", lastname);
       formData.append("email", email);
-      formData.append("profile_image", profile_image); // Append profile image to form data
+      formData.append("images", images); // Append profile image to form data
 
       const resp = await signup(formData);
       console.log("FormData:", formData);
@@ -58,8 +58,8 @@ const Signup = () => {
   };
 
   const handleOnChangeProfile_image = (e) => {
-    setProfile_image(e.target.files[0]);
-    console.log(profile_image);
+    setImages(e.target.files[0]);
+    console.log(images);
   };
 
   return (
@@ -135,7 +135,7 @@ const Signup = () => {
               onChange={handleOnChangeProfile_image}
               className="signup__input"
               type="file"
-              name="profile_image"
+              name="images"
               accept="image/*"
             />
           </label>

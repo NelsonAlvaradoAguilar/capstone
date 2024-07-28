@@ -1,14 +1,10 @@
 import "./Profile.scss";
 
 const Profile = ({ userInfo, logout }) => {
-  console.log(userInfo.profile_image);
+  console.log(userInfo.images);
   return (
     <section className="profile">
-      <img
-        src={userInfo?.profile_image}
-        alt="/"
-        className="profile__image"
-      ></img>{" "}
+      <img src={userInfo?.images} alt="/" className="profile__image"></img>{" "}
       {"image"}
       <div className="profile__data">
         <h2 className="profile__subtitle">

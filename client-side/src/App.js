@@ -59,10 +59,16 @@ function App() {
             path="/classes/:id"
             element={<ClassesDetails user_id={user_id} userInfo={userInfo} />}
           />
-          <Route path="/PostNewClass" element={<PostNewClass />} />
+          <Route
+            path="/PostNewClass"
+            element={<PostNewClass user_id={user_id} />}
+          />
           <Route path="/news" element={<ArticlesNewsPage />} />
           <Route path="/news/:id" element={<ArticlesNewsDetails />} />
-          <Route path="/AddNewArticlesNews" element={<AddNewArticlesNews />} />
+          <Route
+            path="/AddNewArticlesNews"
+            element={<AddNewArticlesNews user_id={user_id} />}
+          />
           <Route path="/events" element={<EventsPage />} />
           <Route
             path="/PostAnEvent"

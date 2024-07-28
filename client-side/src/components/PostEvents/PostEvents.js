@@ -70,7 +70,6 @@ function PostAnEvent({ user_id: user_id }) {
   };
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    //const imagePath = `${apiUrl}/images/${file.name}`;
     setImages(file);
     console.log(file);
   };

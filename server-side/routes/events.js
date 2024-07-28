@@ -1,15 +1,15 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
+const upload = require("../midleware/upload.js");
 const eventsController = require("../controllers/events-controller");
 
-router
-  .route("/")
-  //.post(eventsController.postEvents)
-  .get(eventsController.getEvents);
+router.route("/").get(eventsController.getEvents);
 
 router
   .route("/:id")
   .get(eventsController.getSingleEvent)
-  .post(eventsController.postEvents);
+  .post(upload.single("images"), eventsController.postEvents);
+
 router
   .route("/:id/comments")
   .get(eventsController.getEventsComments)
