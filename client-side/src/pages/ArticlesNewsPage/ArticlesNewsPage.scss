@@ -3,7 +3,11 @@
 
 .articles-news {
   @include cards();
-
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   &__postBtn {
     width: 3rem;
     position: relative;

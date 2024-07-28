@@ -25,7 +25,7 @@ const getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    const imagePath = user.profile_image.replace("public/", "");
+    const imagePath = user.images.replace("public/", "");
 
     const userProfile = {
       id: user.id,
@@ -34,7 +34,7 @@ const getProfile = async (req, res) => {
       country: user.country,
       email: user.email,
       lastname: user.lastname,
-      profile_image: `http://localhost:8080/${imagePath}`,
+      images: `http://localhost:8080/${imagePath}`,
     };
     res.json(userProfile);
   } catch (error) {
@@ -52,27 +52,27 @@ const getUsers = async (req, res) => {
 };
 const signup = async (req, res) => {
   const { name, password, country, email, lastname } = req.body;
-  const profile_image = req.file ? req.file.path : "/default_profile_image.jpg";
+  const images = req.file ? req.file.path : "/default_profile_image.jpg";
 
-  if (!name || !password || !country || !email || !lastname || !profile_image) {
+  if (!name || !password || !country || !email || !lastname || !images) {
     return res.status(400).json({
       message: `Please provide all required information`,
     });
   }
 
   try {
-    const usersData = await knex("users").where({ email });
+    // const usersData = await knex("users").where({ email });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const result = await knex("users").insert({
+    const newUser = await knex("users").insert({
       name,
       password: hashedPassword,
       country,
       email,
       lastname,
-      profile_image,
+      images,
     });
-    const newUserId = result[0];
+    const newUserId = newUser[0];
     const createdUser = await knex("users").where({ id: newUserId });
 
     res.status(201).json({

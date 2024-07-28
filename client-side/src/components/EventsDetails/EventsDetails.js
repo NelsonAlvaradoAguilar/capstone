@@ -4,6 +4,7 @@ import { getSigleEvent, getEventsComments } from "../../Api-tools/Api-tools";
 import Comments from "../Comments/Comments";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import arrowback from "../../assets/icons/icons8-back-arrow-64.png";
+import AddCommentIcon from "../../assets/icons/icons8-add-48.png";
 const EventsDetails = () => {
   const { id } = useParams();
   const [singleEvent, setSingleEvent] = useState({});
@@ -38,75 +39,81 @@ const EventsDetails = () => {
 
   return (
     <section className="events-details">
-      <h1 className="events-details__title">{singleEvent?.title}</h1>
-      <img className="events-details__img" src={singleEvent?.images}></img>
-      <div className="events-details__content">
-        <div className="events-details__content events-details__content--date-location">
-          <h3>Date:</h3>
-          <p>{singleEvent?.date}</p>
+      {" "}
+      <div className="events-details__first-container">
+        <h1 className="events-details__title">{singleEvent?.title}</h1>
+        <img className="events-details__img" src={singleEvent?.images}></img>
+        <div className="events-details__content">
+          <div className="events-details__content events-details__content--date-location">
+            <h3>Date:</h3>
+            <p>{singleEvent?.date}</p>
+          </div>
+          <div className="events-details__content events-details__content--date-location">
+            <h3>Location:</h3>
+            <p>{singleEvent?.location}</p>
+          </div>
         </div>
-        <div className="events-details__content events-details__content--date-location">
-          <h3>Location:</h3>
-          <p>{singleEvent?.location}</p>
+      </div>
+      <div className="events-details__second-container">
+        <p className="events-details__description">
+          {singleEvent?.description}
+        </p>
+        <div className="events-details__entrance-container">
+          <h3>Entrance:</h3>
+
+          <p>${singleEvent?.price}</p>
         </div>
-      </div>
+        <div
+          onClick={handleOpenModal}
+          className="events-details__subtitle events-details__subtitle--arrow-back"
+        >
+          <h4> Comments</h4> {commnetsNumber}
+        </div>
+        <div className="events-details__button">
+          <Link
+            className="events-details__link"
+            to={`/events/${id}/comments`}
+          ></Link>
+          <img
+            onClick={clickBack}
+            className={`events-details__icon ${
+              modalIsOpen === false ? "events-details__icon--back" : ""
+            }`}
+            src={arrowback}
+          ></img>
+        </div>
 
-      <p className="events-details__description">{singleEvent?.description}</p>
-      <div className="events-details__entrance-container">
-        <h3>Entrance:</h3>
+        <ul className="events-details__ul">
+          {commentsList?.map((comment, index) => (
+            <li
+              className={`events-details__comments ${
+                modalIsOpen === true && index === 3
+                  ? "events-details__comments--border"
+                  : ""
+              }`}
+              key={index}
+            >
+              {modalIsOpen && (
+                <Comments
+                  comment={comment.comment}
+                  name={comment.name}
+                  isOpen={modalIsOpen}
+                  isClosed={handleCloseModal}
+                />
+              )}
+            </li>
+          ))}
+        </ul>
 
-        <p>${singleEvent?.price}</p>
-      </div>
-      <div
-        onClick={handleOpenModal}
-        className="events-details__subtitle events-details__subtitle--arrow-back"
-      >
-        <h4> Comments</h4> {commnetsNumber}
-      </div>
-      <div className="events-details__button">
-        <Link className="events-details__link" to={`/events/${id}/comments`}>
-          {" "}
-          <button className="events-details__button events-details__button--post">
-            Leave a comment
-          </button>
-        </Link>
-        <Link className="events-details__link" to={"/PostAnEvent"}>
-          <button className="events-details__button events-details__button--post">
-            Post an event
-          </button>
-        </Link>
-      </div>
-
-      <ul className="events-details__ul">
-        {commentsList?.map((comment, index) => (
-          <li key={index}>
-            {modalIsOpen && (
-              <Comments
-                comment={comment.comment}
-                name={comment.name}
-                isOpen={modalIsOpen}
-                isClosed={handleCloseModal}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
-
-      <div className="events-details__icon-container">
-        <img
-          onClick={clickBack}
-          className={`events-details__icon ${
-            modalIsOpen === false ? "events-details__icon--back" : ""
-          }`}
-          src={arrowback}
-        ></img>
-        <img
-          onClick={handleCloseModal}
-          className={`events-details__icon ${
-            modalIsOpen === true ? "events-details__icon--visible" : ""
-          }`}
-          src={arrowback}
-        ></img>
+        <div className="events-details__icon-container">
+          <img
+            onClick={handleCloseModal}
+            className={`events-details__icon ${
+              modalIsOpen === true ? "events-details__icon--visible" : ""
+            }`}
+            src={arrowback}
+          ></img>
+        </div>
       </div>
     </section>
   );

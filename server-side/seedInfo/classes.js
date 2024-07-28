@@ -7,7 +7,7 @@ module.exports = [
     date: "April 20, 2024",
     location: "Northumberland County",
     instructor: "Emily Smith",
-    images: "http://localhost:8080/images/intro-to-oil.jpg",
+    images: "images/intro-to-oil.jpg",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ module.exports = [
     date: "May 8, 2024",
     location: "Northumberland County",
     instructor: "David Johnson",
-    images: "http://localhost:8080/images/poterie.webp",
+    images: "images/poterie.webp",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ module.exports = [
     date: "June 15, 2024",
     location: "Northumberland County",
     instructor: "Michael Thompson",
-    images: "http://localhost:8080/images/guitar lessons.avif",
+    images: "images/guitar lessons.avif",
   },
   {
     id: 4,
@@ -37,6 +37,6 @@ module.exports = [
     date: "August 5, 2024",
     location: "Northumberland County",
     instructor: "Emma Roberts",
-    images: "http://localhost:8080/images/waterpaint.jpg",
+    images: "images/waterpaint.jpg",
   },
 ];

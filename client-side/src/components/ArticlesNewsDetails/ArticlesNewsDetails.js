@@ -62,9 +62,6 @@ const ArticlesNewsDetails = (params) => {
         <p>{singleArticleNews.email}</p>
       </div>
       <div className="articlel-details__btn-container">
-        <Link className="articlel-details__postBtn" to={"/AddNewArticlesNews"}>
-          Post yours
-        </Link>
         <img
           onClick={clickBack}
           className="articlel-details__icon"

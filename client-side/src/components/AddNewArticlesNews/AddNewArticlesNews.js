@@ -4,12 +4,13 @@ import "./AddNewArticlesNews.scss";
 import { apiUrl } from "../../Api-tools/Api-tools";
 import { useNavigate } from "react-router-dom";
 
-const AddNewArticlesNews = () => {
+const AddNewArticlesNews = ({ user_id }) => {
+  console.log(user_id);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [contact_name, setContact_name] = useState("");
-  const [images, setImage] = useState("");
+  const [images, setImage] = useState(null);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -19,15 +20,16 @@ const AddNewArticlesNews = () => {
   const handleArticlesAndNew = async (e) => {
     e.preventDefault();
     try {
-      const resp = await postArticlesNews(
-        title,
-        description,
-        location,
-        phone,
-        email,
-        contact_name,
-        images
-      );
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("location", location);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("contact_name", contact_name);
+      formData.append("images", images);
+
+      const resp = await postArticlesNews(formData, user_id);
       navigate("/news");
       console.log(resp);
     } catch (error) {
@@ -61,9 +63,8 @@ const AddNewArticlesNews = () => {
 
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
-    setImage(imagePath);
-    console.log(imagePath);
+
+    setImage(file);
   };
 
   return (
@@ -155,9 +156,10 @@ const AddNewArticlesNews = () => {
             Image:
             <input
               onChange={handleOnChangeImage}
-              name="image"
+              name="images"
               className="add-articles-news__input-field add-articles-news__input-field--img"
               type="file"
+              accept="image/*"
             />
           </label>
         </div>

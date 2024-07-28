@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import "./PostEvents.scss";
 import { apiUrl, postEvent } from "../../Api-tools/Api-tools";
 
-function PostAnEvent(params) {
+function PostAnEvent({ user_id: user_id }) {
+  console.log(user_id);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [entrance, setEntrance] = useState("No");
   const [price, setPrice] = useState("0");
   const [date, setDate] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState(null);
+  //const [user_id, setUser_id] = useState(user_id);
   const navigate = useNavigate();
   const calcel = () => {
     navigate("/events");
@@ -18,18 +20,22 @@ function PostAnEvent(params) {
   const clickBack = (e) => {
     navigate(-1);
   };
+
   const handlePostNewEvent = async (e) => {
     e.preventDefault();
+
     try {
-      const resp = await postEvent(
-        title,
-        description,
-        date,
-        price,
-        entrance,
-        location,
-        images
-      );
+      const formDat = new FormData();
+      formDat.append("title", title);
+      formDat.append("description", description);
+      formDat.append("date", date);
+      formDat.append("price", price);
+      formDat.append("entrance", entrance);
+      formDat.append("location", location);
+      formDat.append("images", images);
+
+      const resp = await postEvent(formDat, user_id);
+      console.log(formDat);
       calcel();
       console.log(resp);
     } catch (error) {
@@ -64,9 +70,8 @@ function PostAnEvent(params) {
   };
   const handleOnChangeImage = (e) => {
     const file = e.target.files[0];
-    const imagePath = `${apiUrl}/images/${file.name}`;
-    setImages(imagePath);
-    console.log(imagePath);
+    setImages(file);
+    console.log(file);
   };
   const handleOnPriceChange = (e) => {
     setPrice(e.target.value);
@@ -98,7 +103,6 @@ function PostAnEvent(params) {
             <div className="post-event__input">
               <input
                 className="post-event__input-field"
-                type="text"
                 placeholder="Date"
                 name="Date"
                 id="Date"
@@ -172,6 +176,7 @@ function PostAnEvent(params) {
                   placeholder="$0.00"
                   name="Price"
                   id="Price"
+                  type="number"
                   onChange={handleOnPriceChange}
                   value={price}
                 />
@@ -189,6 +194,7 @@ function PostAnEvent(params) {
                 type="file"
                 name="images"
                 onChange={handleOnChangeImage}
+                accept="image/*"
               />
             </div>
           </label>

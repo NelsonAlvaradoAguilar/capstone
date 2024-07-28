@@ -3,7 +3,7 @@ import "./ClassesDetail.scss";
 import { getSigleClass } from "../../Api-tools/Api-tools";
 import { useParams } from "react-router-dom";
 import RegisteringForAClass from "../ClassRegistration/ClassRegistration";
-const ClassesDetails = ({ user_id }) => {
+const ClassesDetails = ({ user_id, userInfo }) => {
   const { id } = useParams();
   const [singleClass, setSingleClass] = useState({});
 
@@ -41,7 +41,12 @@ const ClassesDetails = ({ user_id }) => {
         </div>
       </div>
 
-      <RegisteringForAClass class_id={id} user_id={user_id} />
+      <RegisteringForAClass
+        class_id={id}
+        user_id={user_id}
+        userInfo={userInfo}
+        class_info={singleClass}
+      />
     </section>
   );
 };

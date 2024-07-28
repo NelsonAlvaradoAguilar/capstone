@@ -1,13 +1,17 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
+const upload = require("../midleware/upload.js");
 const classesController = require("../controllers/classes-controller");
 
 router
-  .route("/classes")
-  .post(classesController.postClasses)
+  .route("/")
 
   .get(classesController.getClassesList);
 
-router.route("/classes/:id").get(classesController.getSingleClass);
-router.route("/classes/:id/feedback").post(classesController.registerToClass);
-router.route("/classes/:id/register").post(classesController.registerToClass);
+router
+  .route("/:id")
+  .get(classesController.getSingleClass)
+  .post(upload.single("images"), classesController.postClasses);
+router.route("/:id/feedback").post(classesController.registerToClass);
+router.route("/:id/register").post(classesController.registerToClass);
 module.exports = router;

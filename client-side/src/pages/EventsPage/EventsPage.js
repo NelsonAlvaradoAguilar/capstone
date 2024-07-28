@@ -3,6 +3,7 @@ import { getEvents, getEventsComments } from "../../Api-tools/Api-tools";
 import EventsList from "../../components/EventsList/EventsList";
 
 import "./EventsPage.scss";
+import { Link } from "react-router-dom";
 
 const EventsPage = () => {
   const [eventsList, setEventsList] = useState([]);
@@ -22,7 +23,12 @@ const EventsPage = () => {
 
   return (
     <section className="events">
-      <h1 className="events__title">Events</h1>
+      <div className="events__header">
+        <h1 className="events__title">Events</h1>
+        <Link className="events__link" to={"/PostAnEvent"}>
+          <button className="events__button"></button>
+        </Link>
+      </div>
       <EventsList List={eventsList} />
     </section>
   );
