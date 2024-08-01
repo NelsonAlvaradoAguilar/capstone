@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-
+import "./CardList.scss";
 const CardsList = ({ cards }) => {
+  console.log(cards);
   return (
     <section className="cards">
       {" "}

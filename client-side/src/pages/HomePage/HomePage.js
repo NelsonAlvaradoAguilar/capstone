@@ -4,13 +4,16 @@ import {
   getEvents,
   getClasses,
   getArticles_news,
+  getAthorized,
 } from "../../Api-tools/Api-tools";
 
-import { Link } from "react-router-dom";
-const HomePage = () => {
+import { Link, useNavigate } from "react-router-dom";
+const HomePage = ({ logOut }) => {
   const [eventHome, setEventHome] = useState([]);
   const [classesHome, setClassesHome] = useState([]);
   const [articles_newsHome, setDonationsAndNewsHome] = useState([]);
+  const [userImg, setUserImg] = useState();
+  const [userName, setUserName] = useState();
 
   const getContentList = async () => {
     const events = await getEvents();
@@ -19,7 +22,11 @@ const HomePage = () => {
     setClassesHome(classes[0]);
     const donationsNews = await getArticles_news();
     setDonationsAndNewsHome(donationsNews[0]);
+    const user = await getAthorized();
+    setUserImg(user.images);
+    setUserName(user.name);
   };
+
   useEffect(() => {
     getContentList();
   }, []);
@@ -27,9 +34,23 @@ const HomePage = () => {
   return (
     <section className="home">
       <div className="home__content">
-        <Link className="home__link" to={"/login"}>
-          <button className="home__loginBtn">log in</button>
-        </Link>
+        <div className="home__login-profile">
+          <h1 className="home__userName">{userName}</h1>
+          {userImg ? (
+            <Link to={"/profile"}>
+              <img className="home__userInfo" src={userImg}></img>
+            </Link>
+          ) : (
+            <Link className="home__link" to={"/login"}>
+              <button className="home__loginBtn">log in</button>
+            </Link>
+          )}
+          {userImg && (
+            <button onClick={logOut} className="home__loginBtn">
+              logOut
+            </button>
+          )}
+        </div>
         <h1 className="home__title">Northumberland Hispanic Cultural Club</h1>
         <p className="home__bio">
           The Northumberland Hispanic Cultural Club, is a registered

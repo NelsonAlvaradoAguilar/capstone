@@ -157,11 +157,35 @@ const postEvents = async (req, res) => {
     });
   }
 };
+const getEventsByUserId = async (req, res) => {
+  const { user_id } = req.params;
 
+  try {
+    // Fetch events for the given userId
+    const events = await knex("events").where("user_id", user_id).select("*"); // Select all columns or specify columns you need
+
+    const updatedEvents = events.map((event) => {
+      const imagePath = event.images.replace("public/", "");
+      return {
+        ...event,
+        images: `http://localhost:8080/${imagePath}`, // Update to your server URL if different
+      };
+    });
+
+    res.status(200).json(updatedEvents);
+  } catch (error) {
+    // Log the error
+    console.error("Error fetching events:", error);
+
+    // Send a 500 Internal Server Error status with a message
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 module.exports = {
   postEvents,
   getSingleEvent,
   getEvents,
   getEventsComments,
   postComment,
+  getEventsByUserId,
 };
