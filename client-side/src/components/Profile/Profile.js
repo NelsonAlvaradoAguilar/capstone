@@ -10,16 +10,16 @@ const Profile = ({ userInfo, logout, userEvents }) => {
         className="profile__image"
       ></img>{" "}
       {"image"}
-      {userEvents.map((event) => {
-        console.log(event);
-        return (
-          <section className="profile__cards-container">
-            <div key={event.id}>
+      <ul className="profile__cards-container">
+        {userEvents?.map((event) => {
+          console.log(event);
+          return (
+            <li key={event.id}>
               <CardsList cards={event} />
-            </div>
-          </section>
-        );
-      })}
+            </li>
+          );
+        })}
+      </ul>
       <div className="profile__data">
         <h2 className="profile__subtitle">
           {" "}
