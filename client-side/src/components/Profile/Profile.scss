@@ -29,6 +29,8 @@
   }
   &__cards-container {
     display: flex;
-    flex-direction: column;
+    flex-flow: row wrap;
+    list-style: none;
+    justify-content: space-evenly;
   }
 }

@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import "./CardList.scss";
+import { useState } from "react";
 const CardsList = ({ cards }) => {
+  const [zoomImg, setZoomImg] = useState(false);
   console.log(cards);
+
+  const zoom = () => {
+    setZoomImg(true);
+  };
   return (
     <section className="cards">
       {" "}
