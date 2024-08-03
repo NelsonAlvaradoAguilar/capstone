@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { json, useNavigate } from "react-router-dom";
 
 export const apiUrl = "http://localhost:8080",
   apiEndpoint = "/api/capstone/";
@@ -10,6 +11,7 @@ const articles_newsEndpoint = `${apiUrl}${apiEndpoint}news`;
 const signupEndpoint = `${apiUrl}${apiEndpoint}signup`;
 export const loginEndpoint = `${apiUrl}${apiEndpoint}login`;
 export const profileEndpoint = `${apiUrl}${apiEndpoint}profile`;
+export const token = sessionStorage.getItem("JWTtoken");
 const getEvents = async () => {
   try {
     const response = await axios.get(`${eventsEndpoint}`);
@@ -18,6 +20,18 @@ const getEvents = async () => {
     console.log(
       `Failed to get Events list from API with error message: ${error}`
     );
+  }
+};
+const fetchEventsByUserId = async (user_id) => {
+  try {
+    const response = await axios.get(`${eventsEndpoint}/user/${user_id}`);
+
+    console.log("Events:", response.data);
+    // const data = JSON.stringify(response);
+    // console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching events:", error);
   }
 };
 const getEventsComments = async (id) => {
@@ -176,7 +190,6 @@ const signup = async (formData) => {
 };
 
 const getAthorized = async () => {
-  const token = sessionStorage.getItem("JWTtoken");
   if (!token) {
     return "No JWTtoken found in sessionStorage";
   }
@@ -192,6 +205,14 @@ const getAthorized = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+const logOut = async (token) => {
+  const response = await axios.post(`${profileEndpoint}/logout`, null, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  sessionStorage.removeItem("JWTtoken");
 };
 
 export {
@@ -210,4 +231,6 @@ export {
   signup,
   getAthorized,
   feedBack,
+  logOut,
+  fetchEventsByUserId,
 };

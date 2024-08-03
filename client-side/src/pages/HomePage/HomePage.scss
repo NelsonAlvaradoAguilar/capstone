@@ -131,4 +131,18 @@
       width: 15rem;
     }
   }
+  &__userInfo {
+    width: 60px;
+    border-radius: 10px;
+  }
+  &__login-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__userName {
+    color: aliceblue;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
 }

@@ -1,11 +1,25 @@
 import "./Profile.scss";
-
-const Profile = ({ userInfo, logout }) => {
-  console.log(userInfo.images);
+import CardsList from "../CardsList/CardsList";
+const Profile = ({ userInfo, logout, userEvents }) => {
+  console.log(userInfo.images, userEvents);
   return (
-    <section className="profile">
-      <img src={userInfo?.images} alt="/" className="profile__image"></img>{" "}
+    <section data-testid="Profile-1" className="profile">
+      <img
+        src={userInfo?.images}
+        alt="Profile Image"
+        className="profile__image"
+      ></img>{" "}
       {"image"}
+      {userEvents.map((event) => {
+        console.log(event);
+        return (
+          <section className="profile__cards-container">
+            <div key={event.id}>
+              <CardsList cards={event} />
+            </div>
+          </section>
+        );
+      })}
       <div className="profile__data">
         <h2 className="profile__subtitle">
           {" "}
