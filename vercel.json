@@ -3,24 +3,15 @@
   "builds": [
     {
       "src": "server-side/server.js",
+
       "use": "@vercel/node"
-    },
-    {
-      "src": "client-side/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "client-side/build"
-      }
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "server-side/server.js"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/client-side/$1"
+
+      "dest": "server-side/server.js"
     }
   ]
 }
