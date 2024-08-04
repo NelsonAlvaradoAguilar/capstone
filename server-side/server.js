@@ -25,7 +25,7 @@ app.use("/api/capstone/", userRoutes);
 app.use("/api/capstone/classes/", classesRoutes);
 app.use("/api/capstone/news/", articlesNewsRoutes);
 
-app.get("/api/capstone", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
