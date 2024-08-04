@@ -9,7 +9,7 @@
       "src": "client-side/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "client-side/build"
+        "distDir": "build"
       }
     }
   ],
@@ -17,16 +17,12 @@
     {
       "src": "/api/(.*)",
       "dest": "server-side/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client-side/$1"
     }
   ],
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/client-side/index.html"
+      "destination": "/index.html"
     }
   ]
 }
