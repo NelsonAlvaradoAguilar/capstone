@@ -2,7 +2,6 @@
   "version": 2,
   "builds": [
     {
-
       "src": "server-side/server.js",
 
       "use": "@vercel/node"
@@ -13,7 +12,6 @@
       "src": "/(.*)",
 
       "dest": "server-side/server.js"
-
     }
   ]
 }
