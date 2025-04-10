@@ -29,7 +29,7 @@ app.get("/api/capstone/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-app.listen(PORT, () => {
+/**app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
-});
-/*module.exports = app;*/
+}); */
+module.exports = app;
