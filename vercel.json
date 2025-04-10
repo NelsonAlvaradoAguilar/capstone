@@ -10,10 +10,6 @@
     {
       "src": "/api/capstone/(.*)",
       "dest": "/server-side/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/client-side/build/$1"
     }
   ]
 }
