@@ -8,7 +8,7 @@
   ],
   "routes": [
     {
-      "src": "/api/capstone/(.*)",
+      "src": "/api/capstone",
       "dest": "/server-side/server.js"
     }
   ]
