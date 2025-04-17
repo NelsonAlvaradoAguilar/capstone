@@ -10,7 +10,7 @@ router.route("/user/:user_id").get(eventsController.getEventsByUserId);
 router
   .route("/:id")
   .get(eventsController.getSingleEvent)
-  .post(upload.single("images"), eventsController.postEvents);
+  .post(upload.single("images"), eventsController.postEvents); // changed from "images"
 
 router
   .route("/:id/comments")

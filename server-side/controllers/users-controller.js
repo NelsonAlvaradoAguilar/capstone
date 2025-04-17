@@ -6,17 +6,28 @@ const secretKey = process.env.SECRET_KEY;
 
 function authorize(req, res, next) {
   const token = req.headers.authorization?.split(" ")[1];
+
   if (!token) {
-    return res.status(403).json({ error: "No token. Unauthorized." });
+    return res.status(403).json({ error: "No token provided." });
   }
+
+  if (!secretKey) {
+    console.error("SECRET_KEY is undefined!");
+    return res
+      .status(500)
+      .json({ error: "Server misconfiguration. SECRET_KEY missing." });
+  }
+
   try {
     const payload = jwt.verify(token, secretKey);
     req.decode = payload;
     next();
   } catch (error) {
-    res.status(403).json({ error: "Not Authorized." });
+    console.error("JWT verify error:", error);
+    res.status(403).json({ error: "Invalid or expired token." });
   }
 }
+
 const getProfile = async (req, res) => {
   try {
     const user = await knex("users")
@@ -56,33 +67,41 @@ const signup = async (req, res) => {
     ? `images/${req.file.filename}`
     : "images/default_image.jpg";
 
-  if (!name || !password || !country || !email || !lastname || !images) {
+  // Validation: Check if all fields are provided
+  if (!name || !password || !country || !email || !lastname) {
     return res.status(400).json({
       message: `Please provide all required information`,
     });
   }
 
   try {
-    // const usersData = await knex("users").where({ email });
-
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await knex("users").insert({
-      name,
-      password: hashedPassword,
-      country,
-      email,
-      lastname,
-      images,
-    });
-    const newUserId = newUser[0];
-    const createdUser = await knex("users").where({ id: newUserId });
 
+    // Insert the new user into the database
+    const newUser = await knex("users")
+      .insert({
+        name,
+        password: hashedPassword,
+        country,
+        email,
+        lastname,
+        images,
+      })
+      .returning("*"); // Return the newly created user
+
+    const createdUser = newUser[0]; // Extract the first item from the array
+
+    // Return success message and the created user data
     res.status(201).json({
       message: "User has been successfully created",
       user: createdUser,
     });
   } catch (error) {
-    res.status(500).json({ message: `Unable to create new user: ${error}` });
+    console.error(error); // Log the error to the server console for debugging
+    res
+      .status(500)
+      .json({ message: "Unable to create new user. Please try again later." });
   }
 };
 const login = async (req, res) => {

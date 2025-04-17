@@ -12,7 +12,7 @@ require("dotenv").config();
   },
 }; */
 module.exports = {
-  client: "mysql2", // Adjust to your database client
+  client: "pg", // Adjust to your database client
   connection: process.env.DATABASE_URL, // Use the DATABASE_URL environment variable for the database connection
   pool: { min: 2, max: 10 },
 };
