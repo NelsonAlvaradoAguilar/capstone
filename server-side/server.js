@@ -5,14 +5,14 @@ const cors = require("cors");
 const path = require("path");
 const multer = require("multer");
 require("dotenv").config();
-
+const corsMiddleware = require("./midleware/cors");
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 5050;
-
+app.use(corsMiddleware);
 // Import Routes
 const articlesNewsRoutes = require("./routes/articles_news");
 const eventsRoutes = require("./routes/events");
@@ -29,7 +29,22 @@ app.get("/api/capstone/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-/**app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
-}); */
-module.exports = app;
+});
+/*module.exports = app;
+/**{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server-side/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/capstone",
+      "dest": "/server-side/server.js"
+    }
+  ]
+} */
