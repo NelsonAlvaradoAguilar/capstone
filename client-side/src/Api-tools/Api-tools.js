@@ -1,6 +1,4 @@
 import axios from "axios";
-import { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
 
 export const apiUrl = "http://localhost:8080",
   apiEndpoint = "/api/capstone/";
@@ -27,8 +25,8 @@ const fetchEventsByUserId = async (user_id) => {
     const response = await axios.get(`${eventsEndpoint}/user/${user_id}`);
 
     console.log("Events:", response.data);
-    // const data = JSON.stringify(response);
-    // console.log(response);
+    const data = JSON.stringify(response);
+    console.log(data);
     return response.data;
   } catch (error) {
     console.error("Error fetching events:", error);
@@ -213,6 +211,7 @@ const logOut = async (token) => {
     },
   });
   sessionStorage.removeItem("JWTtoken");
+  return response.data;
 };
 
 export {

@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "server-side/index.js",
+      "src": "server-side/server.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/capstone",
-      "dest": "/server-side/index.js"
+      "dest": "/server-side/server.js"
     }
   ]
 }
