@@ -1,7 +1,6 @@
 import "./App.scss";
-import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
-import axios from "axios";
-import { profileEndpoint } from "./Api-tools/Api-tools";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 
 import Footer from "./components/Footer/Footer";
@@ -27,6 +26,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState();
   const [user_id, setUser_id] = useState();
+  console.log(isLoading);
+
   const getUserInfo = async () => {
     try {
       const resp = await getAthorized();
