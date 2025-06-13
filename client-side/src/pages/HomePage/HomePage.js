@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./HomePage.scss";
 import {
   getEvents,
@@ -7,7 +7,7 @@ import {
   getAthorized,
 } from "../../Api-tools/Api-tools";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const HomePage = ({ logOut }) => {
   const [eventHome, setEventHome] = useState([]);
   const [classesHome, setClassesHome] = useState([]);
@@ -38,7 +38,7 @@ const HomePage = ({ logOut }) => {
           <h1 className="home__userName">{userName}</h1>
           {userImg ? (
             <Link to={"/profile"}>
-              <img className="home__userInfo" src={userImg}></img>
+              <img className="home__userInfo" alt="/" src={userImg}></img>
             </Link>
           ) : (
             <Link className="home__link" to={"/login"}>
@@ -68,16 +68,16 @@ const HomePage = ({ logOut }) => {
         <Link className="home__link" to={"/events"}>
           {""}
           <h1 className="home__subtitle">Events</h1>
-          <img className="home__image" src={eventHome.images} />
+          <img className="home__image" alt="/" src={eventHome.images} />
         </Link>
         <Link className="home__link" to={"/classes"}>
           {" "}
           <h1 className="home__subtitle">Classes</h1>
-          <img className="home__image" src={classesHome.images} />
+          <img className="home__image" alt="/" src={classesHome.images} />
         </Link>
         <Link className="home__link" to={"/news"}>
           <h1 className="home__subtitle"> Donations/News</h1>
-          <img className="home__image" src={articles_newsHome.images} />
+          <img className="home__image" alt="/" src={articles_newsHome.images} />
         </Link>
       </div>
     </section>
