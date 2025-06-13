@@ -28,7 +28,7 @@ const ArticlesNewsDetails = (params) => {
   });
   useEffect(() => {
     getSingleArticlesNewsData();
-  }, [id]);
+  }, [getSingleArticlesNewsData]);
 
   return (
     <section className="articlel-details">
